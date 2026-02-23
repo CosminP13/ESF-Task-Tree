@@ -54,8 +54,8 @@ select{flex:0 1 170px}
 .proc{display:flex;align-items:center;gap:10px;padding:12px;border:2px solid var(--brand);border-radius:12px;background:var(--brand-white);font-weight:900;text-transform:uppercase;cursor:pointer}
 .proc .ico{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px}
 .proc .ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
-/* Hide Search column visually as requested */
-.filters .input-group{display:none!important}
+/* Keep search visible: this is a primary workflow entry point */
+.filters .input-group{display:flex!important}
 .proc.active{background:var(--brand);color:var(--brand-white)}
 .subs{margin:6px 0 6px 12px;display:none}
 .sub{display:block;padding:6px 10px;border:2px solid var(--brand);border-radius:10px;background:var(--brand-white);margin:6px 0;font-weight:800;cursor:pointer}
@@ -89,7 +89,7 @@ col.col-exec{width:12%}
 @page{size:A4 landscape;margin:8mm}
 .print-meta{display:none}
 @media print{
-  ..sidenav,.filters,.kpis,.dash,.toolbar{display:none!important}
+  .sidenav,.filters,.kpis,.dash,.toolbar{display:none!important}
   .wrap{grid-template-columns:1fr;max-width:none}
   .thead th{position:static}
   .sub-header{position:static;border:0;background:var(--brand-white); padding:0 0 6px 0; font-size:12px}
@@ -318,7 +318,6 @@ a:hover { text-decoration: underline; text-decoration-color: currentColor; }
   box-shadow: 0 24px 80px rgba(0,0,0,.35);
   border-radius: 14px;
 }
-
 /* Optional: small fade-in when displayed (works once display != none) */
 #skills-modal[style*="display: flex"],
 #skills-positions[style*="display: flex"] {
@@ -613,28 +612,6 @@ td.desc p.keyline { margin: 0 0 6px; }
 td.desc p.keyline strong { font-weight: 600; margin-right: 6px; }
 td.desc li .chk { display:inline-block; width:14px; height:14px; border:1px solid var(--line); border-radius:3px; margin-right:6px; vertical-align:-2px; background:#fff; }
 td.desc li .chk.on { background: var(--brand-06); box-shadow: inset 0 0 0 2px var(--brand-orange); }
-td.desc pre, td.desc code { overflow-x: auto; }
-td.desc a { text-decoration: underline; }
-</style><style id="enterprise-polish-v2">
-/* ===== Enterprise Visual Polish (CSS-only) ===== */
-
-/* 1) Global typography & background */
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-body {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  background: var(--app-bg, #f7f8fb);
-  color: var(--ink, #111);
-}
-h1, h2, h3 { letter-spacing: .2px; }
-h2 { font-weight: 700; }
-small, .meta { color: rgba(0,0,0,.6); }
-
-/* 2) Common container alignment */
-#appHeader, .wrap, .content, .toolbar, .kpis, #dash, #filtersBar {
-  max-width: 1320px;
-  margin-left: auto; margin-right: auto;
-  padding-left: 16px; padding-right: 16px;
-}
 
 /* 3) Toolbar look: subtle surface */
 .toolbar {
@@ -781,6 +758,190 @@ td.desc a { text-decoration: underline; }
   outline: 3px solid rgba(244,124,38,0.5);
   outline-offset: 2px;
 }
+
+
+/* === Fieldstar performance deck theme (black / yellow / orange) === */
+:root{
+  --deck-bg:#050505;
+  --deck-panel:#090909;
+  --deck-gold:#FFC400;
+  --deck-orange:#FF5A1F;
+  --deck-text:#F5F5F5;
+  --deck-muted:#A3A3A3;
+  --deck-line:#2B2B2B;
+  --deck-shadow:0 16px 44px rgba(0,0,0,.45);
+}
+html,body{background:var(--deck-bg); color:var(--deck-text)}
+body{
+  background:
+    radial-gradient(900px 500px at 90% -10%, rgba(255,90,31,.20), transparent 60%),
+    radial-gradient(800px 500px at -10% 120%, rgba(255,196,0,.16), transparent 60%),
+    var(--deck-bg);
+}
+.header{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(8,8,8,.98), rgba(8,8,8,.92));
+  border:1px solid var(--deck-line);
+  border-radius:14px;
+  margin:10px 18px 0;
+  box-shadow:var(--deck-shadow);
+}
+.header::before,
+.header::after{
+  content:"";
+  position:absolute;
+  right:-160px;
+  top:-120px;
+  width:480px;
+  height:180px;
+  transform:rotate(38deg);
+  pointer-events:none;
+}
+.header::before{background:var(--deck-gold); opacity:.95}
+.header::after{background:var(--deck-orange); top:40px; right:-130px; opacity:.92}
+.brand,.filters,.wrap{position:relative; z-index:1}
+.h1{color:var(--deck-text); font-size:34px; letter-spacing:.8px}
+.h2{color:var(--deck-gold); font-size:13px; letter-spacing:.6px}
+.hero-strip{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.hero-pill{
+  border:1px solid #403100;
+  background:linear-gradient(180deg, rgba(255,196,0,.16), rgba(255,196,0,.04));
+  color:var(--deck-gold);
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:12px;
+  font-weight:800;
+}
+.kpi,.badge{
+  border:1px solid #4a3a00;
+  background:linear-gradient(180deg, rgba(255,196,0,.16), rgba(255,196,0,.06));
+  color:var(--deck-gold);
+  box-shadow:none;
+}
+.filters{
+  margin:12px 20px 0;
+  padding:12px;
+  border:1px solid var(--deck-line);
+  border-radius:14px;
+  background:linear-gradient(180deg,#0a0a0a,#080808);
+  box-shadow:var(--deck-shadow);
+}
+.filters .input-group{display:flex!important}
+.btn, select, input[type="search"]{
+  border:1px solid #363636;
+  border-radius:12px;
+  background:#0d0d0d;
+  color:var(--deck-text);
+  text-transform:none;
+  font-weight:700;
+}
+input[type="search"]::placeholder{color:#8c8c8c}
+.btn.primary{
+  border-color:#7f320f;
+  background:linear-gradient(135deg,#ff7a2f,var(--deck-orange));
+  color:#fff;
+}
+.btn:hover{filter:brightness(1.08)}
+.wrap{max-width:1760px; padding:12px 20px 24px}
+.sidenav,.content{
+  border:1px solid var(--deck-line);
+  border-radius:16px;
+  background:linear-gradient(180deg,#0b0b0b,#080808);
+  box-shadow:var(--deck-shadow);
+}
+.sidenav .ttl,.count{color:var(--deck-gold)}
+.proc,.sub{
+  border:1px solid #3b3b3b;
+  background:#0f0f0f;
+  color:var(--deck-text);
+}
+.proc:hover,.sub:hover{border-color:#5f5f5f}
+.proc.active,.sub.active{
+  background:linear-gradient(135deg,var(--deck-gold),#ffdf6b);
+  color:#111;
+  border-color:transparent;
+}
+.toolbar{
+  border:1px solid #2f2f2f;
+  border-radius:12px;
+  background:#0d0d0d;
+  padding:8px 10px;
+}
+.table{
+  border:1px solid #2c2c2c;
+  border-radius:14px;
+  overflow:hidden;
+  background:#0a0a0a;
+}
+.thead th{
+  background:#0f0f0f;
+  border-bottom:1px solid #2f2f2f;
+  color:var(--deck-gold);
+  font-size:12px;
+}
+.tbody td{border-bottom:1px solid #232323; color:var(--deck-text)}
+.tbody tr:hover{box-shadow:inset 0 0 0 9999px rgba(255,196,0,.08)}
+/* critical readability fix: first sticky task column was forced white by legacy styles */
+table th:first-child, table td:first-child{
+  background:#0b0b0b !important;
+  box-shadow: inset -1px 0 0 #232323 !important;
+}
+.tbody tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+.tbody tr:nth-child(odd) td{background:transparent}
+.row-high td{background:rgba(255,90,31,.10) !important}
+.tbody td, .td-tight, .cell-task-desc, .desc-ul li{color:#f1f1f1 !important}
+.desc-ul li::before{color:var(--deck-orange) !important}
+.cell-task-title{color:#fff}
+.cell-task-desc,.count,.h2{opacity:1}
+.chip{
+  border:1px solid #4a3a00;
+  background:rgba(255,196,0,.08);
+  color:var(--deck-gold);
+}
+.sub-header{
+  border:1px solid #4a3a00;
+  background:rgba(255,196,0,.08);
+  color:var(--deck-gold);
+}
+
+/* --- usability + positioning corrections after review --- */
+#appHeader,#filtersBar,.wrap,.content,.toolbar,.kpis,#dash{
+  max-width: min(1760px, calc(100vw - 24px)) !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+#appHeader{margin-left:auto; margin-right:auto}
+#filtersBar{margin-left:auto; margin-right:auto; margin-bottom:10px}
+.wrap{margin-top:0; gap:14px; align-items:start}
+.header{padding:14px 18px 12px}
+.brand{gap:12px; align-items:flex-start}
+.logo{height:68px}
+.h1{line-height:1.1}
+.h2{margin-top:2px}
+.dash{align-items:flex-start; gap:8px}
+.filters .row{row-gap:8px}
+.actions-right{display:flex; flex-wrap:wrap; gap:8px}
+.count{font-size:12px; color:#eab308; letter-spacing:.03em}
+.cell-task-title{font-weight:800; color:#fff}
+.cell-task-desc,.desc-ul li{color:#d6d6d6; font-size:15px; line-height:1.55}
+.badge.high{background:rgba(255,90,31,.2); color:#ffd2c0; border-color:#a63f1a}
+.badge.med{background:rgba(255,196,0,.15); color:#ffe28a; border-color:#6d5200}
+.badge.low{background:rgba(34,197,94,.16); color:#9af0be; border-color:#1f7a45}
+.table{table-layout:fixed}
+.td-tight{white-space:normal}
+@media (max-width:1200px){
+  .brand{flex-wrap:wrap}
+  .dash{width:100%; justify-content:flex-start; margin-left:0}
+}
+@media (max-width:980px){
+  .header{margin:8px 8px 0}
+  .filters{margin:10px 8px 0; padding:10px}
+  .wrap{padding:10px 8px 18px}
+  .h1{font-size:28px}
+}
+
+
 </style></head>
 <body>
 <header class="header" id="appHeader">
@@ -789,6 +950,11 @@ td.desc a { text-decoration: underline; }
 <div>
 <div class="h1">EXTENDED SALES FORCE</div>
 <div class="h2">ESF — TASK TREE</div>
+<div class="hero-strip" role="note" aria-label="Platform highlights">
+  <span class="hero-pill">⚡ 2026 Operations Cockpit</span>
+  <span class="hero-pill">Realtime workflow visibility</span>
+  <span class="hero-pill">Fast filters, executive-ready export</span>
+</div>
 <div aria-label="KPI filters" class="kpis" id="kpis" role="region"></div>
 </div>
 <div aria-hidden="true" aria-label="Dash filters" class="dash" id="dash" role="region">
@@ -804,30 +970,37 @@ td.desc a { text-decoration: underline; }
 <section aria-label="Filters &amp; Search" class="filters" id="filtersBar">
 <div class="row">
 <div class="input-group">
-<input autocomplete="off" id="q" placeholder="Search: task, description, position, owner, executor…" type="search"/>
-<button class="btn" id="btn-search" title="Search (Enter)">Search&lt;</button></div>
-<select id="f-pos"><option value="">POSITION</option></select>
-<select id="f-owner"><option value="">OWNER</option></select>
-<select id="f-exec"><option value="">EXECUTOR</option></select>
-<select id="f-imp"><option value="">IMPORTANCE</option><option value="HIGH">HIGH</option><option value="MEDIUM">MEDIUM</option><option value="LOW">LOW</option></select><div class="actions-right"><button class="btn" id="btn-clear">Clear All&lt;<button class="btn primary" id="btn-export">Export Excel&lt;</button><button class="btn primary" id="btn-desc">HIDE DESCRIPTION&lt;<button class="btn hidden" id="btn-validate">Data Check&lt;</button></button></button>
+<input aria-label="Search tasks, owners, execution roles, descriptions" id="q" placeholder="Search tasks, owners, execution roles, descriptions…" type="search"/>
+<button class="btn primary" id="btn-search">Search</button>
+</div>
+<select aria-label="Filter by Position" id="f-position"><option value="">Position (all)</option></select>
+<select aria-label="Filter by Process" id="f-process"><option value="">Process (all)</option></select>
+<select aria-label="Filter by Sub-process" id="f-sub"><option value="">Sub-process (all)</option></select>
+<select aria-label="Filter by Importance" id="f-imp"><option value="">Importance (all)</option></select>
+<select aria-label="Filter by Frequency" id="f-freq"><option value="">Frequency (all)</option></select>
+<div class="actions-right">
+<button class="btn" id="btn-clear">Clear All</button>
+<button class="btn" id="btn-export">Export Excel</button>
+<button class="btn" id="btn-desc">HIDE DESCRIPTION</button>
+<button class="btn" id="btn-validate">Data Check</button>
 </div>
 </div>
-<div class="chips" id="chips"></div>
+<div aria-live="polite" class="chips" id="chips"></div>
 </section>
-<main class="wrap">
-<aside class="sidenav">
-<div class="ttl">PROCESSES</div>
+<div class="wrap">
+<aside aria-label="Process Tree Navigation" class="sidenav">
+<div class="ttl">Processes</div>
 <ul class="tree" id="tree"></ul>
 <div class="sidenav-footer">
-<span class="pw">POWERED BY</span>
-<img alt="Fieldstar" src="data:image/png;base64,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"/>
+<span class="pw">Powered by</span>
+<img alt="Fieldstar" src="data:image/png;base64,..." />
 </div>
 </aside>
 <section class="content">
 <div aria-label="Toolbar actions" class="toolbar" role="region">
 <div class="count" id="count"></div>
 <div class="tools-right">
-<button class="btn hidden" id="btn-help">Help&lt;</button></div>
+<button class="btn hidden" id="btn-help">Help</button></div>
 </div>
 <div class="sub-header" id="subHeader" style="display:none"></div>
 <table aria-label="Tasks" class="table" role="table">
@@ -844,156 +1017,22 @@ td.desc a { text-decoration: underline; }
 <th><span>Frequency</span></th>
 <th><span>Importance</span></th>
 <th><span>Owner</span></th>
-<th><span>Executor</span></th>
+<th><span>Execution Role</span></th>
 </tr>
 </thead>
-<tbody class="tbody" id="tbody">
-<tr><td colspan="5" id="empty" style="text-align:center;color:#777;padding:24px">Select a process and a sub-process to view tasks.</td></tr>
-</tbody>
+<tbody class="tbody" id="tbody"></tbody>
 </table>
-<div class="print-meta" id="printMeta"></div>
 </section>
-</main>
-<div class="overlay" id="help">
-<div class="panel">
-<h3>Quick help</h3>
-<ul>
-<li><strong>Sidebar</strong>: Click process to expand; click sub-process to filter tasks.</li>
-<li><strong>Search</strong>: Enter → Search. <strong>Ctrl+/</strong> focuses the search.</li>
-<li><strong>Filters</strong>: Combine Position, Owner, Executor, Importance, Frequency.</li>
-<li><strong>Copy Link</strong>: Copies a link with the current selection &amp; filters.</li>
-<li><strong>Export</strong>: Exports the current filtered list to Excel (HTML .xls).</li>
-<li><strong>Print</strong>: A4 landscape; includes selection/filters &amp; timestamp.</li>
-</ul>
-<button class="btn close" id="close-help">Close&lt;</button></div>
 </div>
-<div class="overlay" id="validate">
-<div class="panel">
-<h3>Data Check</h3>
-<div id="valContent">Loading…</div>
-<button class="btn close" id="close-validate">Close&lt;</button></div>
-</div>
-<style id="ui-fixes-baked">
-.overlay{ background: rgba(16,17,20,.66) !important; z-index: 1000 !important; }
-.panel{ box-shadow: 0 20px 60px rgba(0,0,0,.35) !important; }
-body.modal-open{ overflow: hidden !important; }
-</style>
-<style id="taskmgr-css">
-#tmgr-overlay{position:fixed;inset:0;background:rgba(16,17,20,.40);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;z-index:1000}
-#tmgr-overlay .panel{position:relative;background:var(--brand-white);border:2px solid var(--brand,var(--brand-orange));border-radius:14px;max-width:1000px;width:96%;padding:16px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
-#tmgr-overlay .close-x{position:absolute;top:8px;right:8px;border:none;background:transparent;font-size:18px;font-weight:900;cursor:pointer;line-height:1}
-#tmgr-overlay h3{margin:0 0 10px 0;font-size:18px}
-.tmgr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tmgr-grid label{font-weight:800;font-size:12px;text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
-.tmgr-row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
-.tmgr-row .btn{border:2px solid var(--brand,var(--brand-orange));background:var(--brand-white);border-radius:12px;padding:8px 12px;font-weight:900;text-transform:uppercase;cursor:pointer}
-.tmgr-row .btn.primary{background:var(--brand,var(--brand-orange));color:var(--brand-white)}
-.tmgr-row .btn.danger{border-color:#d33;color:#d33;background:var(--brand-white)}
-.tmgr-row .btn.ghost{border-color:#ccc;color:#333;background:var(--brand-white)}
-.tmgr-msg{margin-top:8px;padding:8px 10px;border-radius:10px;border:1px solid #eee;background:#fbfbfd;max-height:24vh;overflow:auto;font-size:12px}
-.tmgr-list{margin:8px 0 0 0;max-height:32vh;overflow:auto;border:1px solid #eee;border-radius:10px}
-.tmgr-list table{width:100%;border-collapse:collapse}
-.tmgr-list th, .tmgr-list td{padding:8px 10px;border-bottom:1px solid #eee;text-align:left;font-size:13px}
-#btn-taskmgr-inline{}
-</style>
-<div aria-labelledby="tmgr-title" aria-modal="true" id="tmgr-overlay" role="dialog">
-<div class="panel">
-<button class="close-x" id="tmgr-x" title="Close">✕</button> <button class="btn primary" id="btn-taskmgr">Task Manager</button>
-<h3 id="tmgr-title">Task Manager — Add / Edit / Delete / Import / Export</h3>
-<div class="tmgr-grid">
-<label>Process
-        <select id="tmgr-process"></select>
-<small>Poți selecta un proces existent sau lăsa gol pentru a genera unul nou.</small>
-</label>
-<label>Sub-process
-        <input id="tmgr-subproc" placeholder="ex: TEST" type="text"/>
-</label>
-<label>Position
-        <input id="tmgr-position" placeholder="ex: ROLE / POSITION" type="text"/>
-</label>
-<label>Task Title
-        <input id="tmgr-title-in" placeholder="titlu task" type="text"/>
-</label>
-<label style="grid-column:1/-1">Description
-        <textarea id="tmgr-desc" placeholder="descriere concisă" rows="3"></textarea>
-</label>
-<label>Frequency
-        <select id="tmgr-freq">
-<option>ONGOING</option><option>DAILY</option><option>WEEKLY</option>
-<option>MONTHLY</option><option>QUARTERLY</option><option>ANNUAL</option>
-</select>
-</label>
-<label>Importance
-        <select id="tmgr-imp"><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select>
-</label>
-<label>Owner
-        <input id="tmgr-owner" type="text"/>
-</label>
-<label>Executor
-        <input id="tmgr-exec" type="text"/>
-</label>
-</div>
-<div class="tmgr-row">
-<button class="btn primary" id="tmgr-add">Add Task</button>
-<button class="btn" disabled="" id="tmgr-update">Save Edit</button>
-<button class="btn danger" disabled="" id="tmgr-delete">Delete</button>
-<button class="btn ghost" id="tmgr-clear">Clear form</button>
-<span style="flex:1 1 auto"></span>
-<input accept=".json,.csv" id="tmgr-file" style="display:none" type="file"/>
-<button class="btn" id="tmgr-import">Import JSON/CSV</button>
-<label style="display:flex;align-items:center;gap:6px;font-weight:800"><input id="tmgr-replace" type="checkbox"/> Replace all</label>
-<button class="btn" id="tmgr-export">Export JSON</button>
-<button class="btn" id="tmgr-restore">Restore autosave</button>
-<button class="btn" id="tmgr-close">Close</button>
-</div>
-<div class="tmgr-row" style="margin-top:6px">
-<input id="tmgr-search" placeholder="Search title / owner / exec / process / subproc…" style="flex:1 1 auto;padding:8px;border-radius:10px;border:1px solid #ddd" type="text"/>
-<span class="muted" style="font-size:12px;color:#666">Tip: Ctrl/Cmd+M deschide managerul rapid</span>
-</div>
-<div class="tmgr-msg" id="tmgr-msg">Statusul operațiunilor va apărea aici.</div>
-<div aria-label="Task list for quick select" class="tmgr-list">
-<table aria-labelledby="tmgr-title" role="table">
-<thead><tr><th>Task</th><th>Process</th><th>Sub-proc</th><th>Imp</th><th>Owner</th><th>Exec</th><th>Pick</th></tr></thead>
-<tbody id="tmgr-tbody"></tbody>
-</table>
-</div>
-</div>
-</div>
-<div aria-labelledby="skills-modal-title" aria-modal="true" class="overlay" id="skills-modal" role="dialog" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:99999;">
-<div class="panel" style="background:#fff; border-radius:14px; max-width:500px; width:94%; padding:20px; border:2px solid var(--brand); box-shadow:0 24px 80px rgba(0,0,0,.35); position:relative;">
-<h3 id="skills-modal-title">Skills</h3>
-<ul id="skills-list" style="list-style: none; padding-left: 0; font-size:16px; line-height:1.6;"></ul>
-<button class="btn primary" id="skills-modal-close" style="margin-top: 12px;">Close</button>
-</div>
-</div>
-<div aria-labelledby="skills-positions-title" aria-modal="true" id="skills-positions" role="dialog" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); align-items:center; justify-content:center; z-index:99998;">
-<div style="background:#fff; border:2px solid var(--brand); border-radius:14px; width:520px; max-width:94vw; padding:16px 16px 10px; box-shadow:0 24px 76px rgba(0,0,0,.35);">
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-<h3 id="skills-positions-title" style="margin:0; font-size:18px;">Select position</h3>
-<button class="btn" id="skills-positions-close" style="background:#fff; border-color:var(--brand);">Close</button>
-</div>
-<div id="skills-positions-list" style="display:flex; gap:12px; flex-wrap:wrap;">
-<button class="pos-item" data-label="Stock Controller" data-pos="stock-controller" style="flex:1 1 48%; display:flex; align-items:center; gap:8px; border:2px solid var(--brand); border-radius:12px; padding:10px 12px; cursor:pointer; background:#fff; font-weight:900;">
-<svg fill="#F47C26" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M3 4h18v2H3zm0 14h18v2H3zM3 9h12v2H3zm0 5h12v2H3z"></path></svg>
-        Stock Controller
-      </button>
-<button class="pos-item" data-label="Account Manager" data-pos="account-manager" style="flex:1 1 48%; display:flex; align-items:center; gap:8px; border:2px solid var(--brand); border-radius:12px; padding:10px 12px; cursor:pointer; background:#fff; font-weight:900;">
-<svg fill="#F47C26" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v12H5.17L4 17.17V4z"></path></svg>
-        Account Manager
-      </button>
-</div>
-</div>
-</div>
-<script defer="True">
-(function(){
-  'use strict';
-  const PAYLOAD = {"processes": [{"id": "human-resources", "name": "HUMAN RESOURCES", "subs": ["Recruitment", "Reporting", "Training", "Retention", "Personnel Administration", "Onboarding", "Payroll"]}, {"id": "field-management", "name": "FIELD MANAGEMENT", "subs": ["OJT & Evaluation", "Monitoring & Control", "Feedback & Insights", "Reporting"]}, {"id": "account-management", "name": "ACCOUNT MANAGEMENT", "subs": ["Knowledge & Process Improvement", "Budget & Financial Control", "Performance Management", "Retention & Improvement", "Reporting & Insights"]}, {"id": "logistics", "name": "LOGISTICS", "subs": ["Demand Forecasting & Planning", "Stock Reconciliation & Audit", "Reporting & Continuous Improvement", "Stock Control & Allocation", "Field Inventory & Asset Tracking", "Stock & System Management"]}, {"id": "asset-workforce-support", "name": "ASSET & WORKFORCE SUPPORT", "subs": ["Financial & Cost Management", "Tools & Equipment Management", "Employee Mobility & Travel", "Reporting", "Fleet Management", "Asset Tracking & Compliance"]}], "tasks": [{"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "COORDONATOR RECRUTARE", "title": "Recruitment Planning", "desc": "Analizeaza pozitia si profilul candidatului tinta\nDefineste cerintele de hard skills si soft skills\nStabileste criteriile de selectie: competente, motivatie, disponibilitate, locatie, sezon\nEvalueaza complexitatea proiectului: volum, buget, program, competente necesare, target angajari\nPlanifica procesul de recrutare si stabileste KPI precum Time to Hire si Time to Fill\nCreeaza plan tip Gantt cu etape si termene clare\nAloca resurse si responsabilitati pe canale de recrutare\nSelecteaza si gestioneaza canalele de recrutare (platforme online, social media, baze de date proprii, recrutare offline)\nRealizeaza analiza cost–beneficiu pentru fiecare canal\nCreeaza materialele de recrutare (anunturi, vizualuri, mesaje follow-up, reminder)\nMonitorizeaza indicatorii de performanta pe canal, recruiter si proiect\nAjusteaza planul in functie de rezultate\nLivreaza planul de recrutare si rapoartele periodice", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "DIANA SORESCU"}, {"process": "human-resources", "subproc": "Reporting", "group": "HUMAN RESOURCES", "position": "COORDONATOR RECRUTARE", "title": "Recruitment Status: HC vs FTE", "desc": "Colecteaza si valideaza date privind forta de munca: HC (Headcount) vs. FTE (Full-Time Equivalent)\nMonitorizeaza numarul angajatilor activi, in onboarding si pozitiile pending angajare\nCentralizeaza recomandarile pe orase si statusul lor (acceptat, respins, in evaluare)\nVerifica corectitudinea datelor in platformele interne (Fieldstar HR, IFlow)\nAnalizeaza trenduri si identifica zone cu deficit de resurse sau timpi mari de recrutare\nPregateste raport Excel consolidat cu tab-uri pentru fiecare indicator\nTransmite raportul catre HR, Account Director si client, conform frecventei agreate\nInclude observatii si propuneri pentru actiuni corective", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "DIANA SORESCU"}, {"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "COORDONATOR RECRUTARE", "title": "Recruitment Results & Planning Meeting", "desc": "Organizeaza si conduce intalnirile saptamanale cu echipa de recrutare\nColecteaza si centralizeaza rezultatele pe recruiter (interviuri, recomandari, angajari)\nActualizeaza statusul pe fiecare oras si rol deschis\nAnalizeaza performanta canalelor de recrutare (eficienta, costuri, timp raspuns)\nPrezinta rezultatele individuale si de echipa\nVerifica respectarea fluxului de recrutare si a termenelor\nDiscutii pentru initierea de actiuni noi si cresterea numarului/calitătii aplicantilor\nIdentifica obstacole si propune solutii in colaborare cu echipa\nStabileste obiective si task-uri pentru saptamana urmatoare\nActualizeaza necesarul de recrutare pe orase si proiecte\nNoteaza responsabilitati si termene in planul de actiune", "freq": "WEEKLY", "importance": "HIGH", "owner": "ANDREEA DOBRE", "exec": "DIANA SORESCU"}, {"process": "human-resources", "subproc": "Training", "group": "HUMAN RESOURCES", "position": "COORDONATOR RECRUTARE", "title": "Recurring Training for Supervisors", "desc": "Planifica si livreaza traininguri recurente pentru CEX si Team Leaders\nStabileste frecventa (lunar/trimestrial) in functie de nevoile fiecarui BU\nDefineste agenda adaptata specificului echipei\nCreeaza materiale (prezentari, ghiduri, proceduri actualizate)\nIntegreaza exemple practice si studii de caz din activitatea curenta\nOrganizeaza sesiuni online sau fata-in-fata\nPrezinta proceduri interne de HR, recrutare, administrativ si payroll\nOfera clarificari si raspunsuri la intrebarile din teren\nTransmite materialele si notele de meeting dupa sesiune\nAsigura suport continuu pentru intrebari ulterioare\nMonitorizeaza implementarea procedurilor discutate\nLivreaza calendarul trainingurilor, agenda, materialele, raportul si feedback-ul de participare", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "DIANA SORESCU"}, {"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Community Management", "desc": "Gestioneaza si creste vizibilitatea posturilor deschise prin community management si promovare online\nPosteaza anunturi pe platforme de joburi (eJobs, BestJobs, OLX, Hipo)\nDistribuie anunturile pe grupuri relevante (Facebook, LinkedIn, comunitati online)\nAdapteaza textele in functie de canalul de promovare\nCreeaza continut vizual si copy atractiv (imagini, bannere, video scurt) pentru social media\nAdapteaza continutul pentru public tinta (Gen Z, candidati cu experienta etc.)\nPlanifica postarile si mentine prezenta constanta in online\nFoloseste campanii platite pe Facebook, Instagram, LinkedIn pentru cresterea reach-ului\nColaboreaza cu echipa de marketing pentru targetare precisa\nMonitorizeaza rezultatele si ajusteaza mesajele in functie de performanta\nInteractioneaza cu potentialii candidati prin raspunsuri rapide in comentarii/mesaje\nDirectioneaza candidatii catre procesul de aplicare\nPastreaza un ton profesionist, prietenos si motivant", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "DIANA SORESCU", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "CV Screening & Interview Scheduling", "desc": "Preluarea aplicatiilor din toate canalele active (platforme online, social media, recomandari interne, baze de date proprii)\nFiltrarea CV-urilor in functie de criterii de selectie: experienta relevanta, stabilitate profesionala, locatie, disponibilitate, competente tehnice si soft skills\nScreening telefonic pentru validarea disponibilitatii, motivatiei, programului si asteptarilor salariale\nProgramarea interviurilor si confirmarea catre candidati (email/SMS/WhatsApp)\nActualizarea statusului in baza de date si transmiterea listei catre echipa relevanta\nLivrabile: lista saptamanala cu status aplicari, fise de screening, raport saptamanal pe canale", "freq": "ONGOING", "importance": "MEDIUM", "owner": "DIANA SORESCU", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Interview Execution & Candidate Recommendation", "desc": "Organizarea si desfasurarea interviurilor (online/offline) in functie de locatie si disponibilitatea candidatului\nPregatirea interviului: revizuire CV, set intrebari standardizate, eventuale exercitii practice\nEvaluarea competentelor tehnice, comportamentale si motivationale\nValidarea motivatiei, disponibilitatii si compatibilitatii cu zona/rolul\nCompletarea fisei de evaluare si transmiterea catre CEX pentru validare", "freq": "ONGOING", "importance": "MEDIUM", "owner": "DIANA SORESCU", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Retention", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Candidate Relationship Management & Engagement", "desc": "Mentinerea unei relatii profesionale cu candidatii si angajatii de la prima interactiune pana la finalul colaborarii\nFaza recrutare: transmitere feedback, colectare feedback, negociere oferta, stabilire start date\nPre-onboarding/onboarding: consultanta documente, integrare, suport comunicare\nPe parcursul colaborarii: stay interviews, urmarire parcurs profesional, actiuni de dezvoltare si retentie\nFinal colaborare: exit interviews, analiza si raportare pentru imbunatatirea proceselor\nLivrabile: feedback post-interviu, fise stay/exit interviews, raport periodic cu sugestii", "freq": "ONGOING", "importance": "LOW", "owner": "DIANA SORESCU", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Final Candidate Confirmation (Post 2nd Interview)", "desc": "Dupa interviul 2, transmiterea feedback-ului final complet catre HR Recrutare\nContinut obligatoriu: nume complet, echipa, dimensiuni echipament, evaluare criterii fizice/comunicare/motivatie, norma de lucru, locatie, coordonator direct, observatii\nResponsabilitati:\nCEX/Team Leader: transmit feedback complet in max. 24h\nHR Recrutare: valideaza informatii, proceseaza datele, creeaza conturi, genereaza documente necesare angajarii", "freq": "ONGOING", "importance": "MEDIUM", "owner": "DIANA SORESCU", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Recruitment", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Candidate Offer & Employment Documents Collection", "desc": "Dupa feedback pozitiv, finalizarea procesului de ofertare si pregatire documentatie angajare\nComunicarea deciziei catre candidat, validarea pachetului financiar si stabilirea start date-ului\nSolicitarea documentelor: CI, diploma, documente specifice proiectului, date personale complete\nTransmiterea pachetului complet catre HR administrativ pentru contract\nLivrabile: confirmare scrisa ofertare, set complet documente, start date confirmat in calendar", "freq": "ONGOING", "importance": "MEDIUM", "owner": "DIANA SORESCU", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "Contract Preparation & Dispatch", "desc": "Completeaza corect contractul cu toate datele personale si de job\nVerifica alinierea cu oferta si bugetul; valideaza intern cu HR Administrativ\nTrimite contractul completat (PDF) candidatului pentru verificare si confirmare\nPregateste pachetul fizic (contract + anexe) si il expediaza prin curier\nUrmareste AWB si confirma recepția documentelor\nOfera consultanta privind clauze, beneficii si obligatii; mentine comunicarea deschisa", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Digital Onboarding & Accounts", "desc": "Primeste de la HR Admin datele contractuale necesare crearii conturilor\nCreeaza si configureaza conturile in FDS si IFlow cu permisiuni corecte\nAsigura activarea conturilor in ziua de start fara intarzieri\nVerifica si actualizeaza periodic datele (rol, locatie, contact, norma)\nValideaza coerenta datelor intre platforme; corecteaza neconcordantele inainte de start", "freq": "ONGOING", "importance": "HIGH", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Offboarding & Access Closure", "desc": "Verifica in Fieldstar raportul de stoc pentru angajatul care paraseste compania\nDaca exista stocuri in gestiune, notifica imediat ownerul de proiect; NU inchide conturile pana la clarificare\nIn lipsa stocurilor, inchide conturile in Fieldstar si IFlow la data incetarii\nActioneaza prompt pentru a preveni riscuri operationale si acces neautorizat", "freq": "ONGOING", "importance": "HIGH", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Onboarding", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Onboarding Coordination & Monitoring", "desc": "Urmareste Start Date pentru fiecare nou angajat si trimite remindere CEX/TL\nVerifica daca userii se regasesc in platforma de Onboarding si WeCare\nContacteaza noul angajat; sustine meeting introductiv (proceduri HR, pasi, contacte cheie)\nMonitorizeaza progresul in platforme; trimite remindere si semnaleaza intarzieri\nLivreaza trainingurile de baza si specifice pentru rol\nColecteaza feedback de la angajat si coordonator; propune imbunatatiri\nOfera suport continuu si raporteaza performanta din perioada de proba", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Training", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Recurring Training", "desc": "Planifica calendarul de traininguri recurente (produs, vanzari, cod marketing)\nCreeaza agenda si materialele (prezentari, suport vizual, materiale de lucru)\nCoordoneaza logistica (online/fizic, locatie, invitatii, linkuri)\nLivreaza sesiunile, adapteaza stilul la nivelul participantilor, foloseste exemple si role-play\nTesteaza asimilarea (quiz/test/exercitii), analizeaza rezultate si raporteaza\nOfera feedback personalizat coordonatorilor si angajatilor", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Retention", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Employee Engagement & Retention Monitoring", "desc": "Definește indicatorii de engagement si instrumentele de colectare (chestionare, 1:1, sondaje, observatii)\nStabileste frecventa evaluarilor (lunar/trimestrial)\nEfectueaza vizite in teren pentru observarea nivelului de implicare si moral\nRealizeaza stay si exit interviews; centralizeaza si analizeaza comparativ\nIdentifica si promoveaza talente (coord., training intern, reprezentare brand)\nPropune planuri individuale de dezvoltare si actiuni de retentie\nRaport trimestrial engagement, centralizator stay/exit, lista talente + planuri, recomandari concrete", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Retention", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Employer Branding Execution", "desc": "Monitorizeaza feedback-ul online al angajatilor; gestioneaza punctual situatiile negative\nUrmareste implementarea media planului de social media\nCreeaza continut cu angajatii (poze, video, testimoniale) si coordoneaza publicarea/distribuirea\nIntegreaza elemente de EB in interviuri si comunicarea de recrutare (BeLikeMe)\nParticipa la evenimente de branding ale clientilor; documenteaza prin foto-video\nRaport lunar EB cu impact, media plan actualizat, set continut media, analiza trimestriala a perceptiei", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Payroll", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Timesheet Export & Review", "desc": "In fiecare marti, exporta din IFlow pontajul saptamanii anterioare\nTransmite fisierul catre structura de supervisare (CEX / TL) pentru confirmare in EOD\nOfera indrumare pentru corectarea neclaritatilor si inchiderea corecta a datelor\nLivrabile: fisier pontaj transmis, confirmare de la supervisori, corectii efectuate", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "HR Data Alignment & System Accuracy", "desc": "Verifica periodic alinierea datelor angajatilor intre FDS si IFlow\nValideaza campuri cheie: nume, start date, pozitie/rol, oras, supervisor, telefon etc.\nCorecteaza prompt discrepantele; solicita validare de la owner proiect/HR cand e nevoie\nLivrabile: reconciliere date FDS vs IFlow, lista neconcordante rezolvate", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Leave & Absence Administration (CO/CM/CFS)", "desc": "Verifica in IFlow toate cererile de concediu (CO) si concediu medical (CM)\nPentru CO: valideaza zilele solicitate vs disponibile si identifica erori/suprapuneri\nPentru CM: verifica existenta documentului justificativ si corectitudinea intervalului\nContacteaza punctual angajatii pentru clarificari pana la rezolvare\nLivrabile: situatie actualizata CO/CM, corectii operate pentru salarizare si continuitate operationala", "freq": "WEEKLY", "importance": "HIGH", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Payroll", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Timesheet Control", "desc": "Genereaza si analizeaza raportul IFlow pentru angajatii cu 0 ore in luna curenta\nVerifica statutul: activ in platforma, in concediu sau eroare de pontaj/lipsa activitate\nContacteaza CEX/TL pentru confirmare si corectii punctuale\nLivrabile: lista 0 ore investigata, corectii efectuate, blocaje salarizare evitate", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Audit Timesheet", "desc": "Verifica in IFlow daca angajatii cu start date in saptamana curenta sunt corect inregistrati\nConfirma crearea profilului, existenta orelor pontate din ziua de start si setarea programului\nIn lipsa pontajului, contacteaza structura de supervisare si asigura completarea retroactiva daca e cazul\nLivrabile: raport control start saptamanal, erori/omisiuni corectate", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Onboarding Digital & Account Activation", "desc": "Dupa crearea contului pentru angajatul nou in Fieldstar si IFlow, la data de start, se trimite email catre suport IQoach (Philip Morris) pentru activarea contului in platforma de vanzare.\nEmail-ul include: nume complet, email, telefon, oras activare.\nActivarea este esentiala pentru operare corecta in aplicatie.\nSe urmareste confirmarea de la suport.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Payroll", "group": "HUMAN RESOURCES", "position": "HR OPERATIONS \n& SYSTEMS SPECIALIST", "title": "Leave & Absence Management (CO / CM / CFS)", "desc": "Evaluare cerere CFS de catre coordonator.\nRefuz daca: lipsa personal, termen prea scurt, numar zile excesiv/nejustificat.\nRefuz → pontare ABS conform politicii interne.\nAprobare daca nu mai sunt zile CO si exista motiv justificat.\nAprobarea finala de catre HR Systems Fieldstar.", "freq": "ONGOING", "importance": "LOW", "owner": "ALEXANDRA MOISE", "exec": "ANA GAVRILESCU"}, {"process": "human-resources", "subproc": "Onboarding", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "We Care Management", "desc": "Transmitere date angajati noi catre PMI pentru creare conturi WeCare.\nDate: nume complet, email corporate, proiect/stream, oras, data start.\nMonitorizare activare conturi si alocare cursuri obligatorii.\nRezolvare erori: conturi inactive, cursuri lipsa, blocaje.\nColaborare cu PMI pentru interventii suplimentare.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Onboarding", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Onboarding process START DATE & ACCOUNTS", "desc": "Monitorizare completa proces onboarding pentru fiecare angajat nou.\nVerificare pasi: creare cont, validare date, atribuiri, acces aplicatii.\nPrevenire erori tehnice si lipsuri (WMS, utilizator inactiv).\nRaportare status si comunicare cu SPV in caz de intarzieri.\nSuport constant pentru acces in platforma.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Onboarding", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Onboarding Process – Welcome Communication", "desc": "Comunicare mesaj bun venit inainte de prima zi operationala.\nPrimire zilnica lista angajati noi de la HR Systems.\nVerificare date: nume, rol, zona, contact.\nTrimitere email personalizat cu Welcome Kit (.pptx).\nMentionare pasi urmatori: supervisor, echipamente, training.", "freq": "ONGOING", "importance": "HIGH", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "human-resources", "subproc": "Onboarding", "group": "HUMAN RESOURCES", "position": "SPECIALIST RECRUTARE SI TRAINING", "title": "Policies C4 & C18 Management", "desc": "Asigurare semnare politici C4/C18 la angajare.\nVerificare semnatura si arhivare in folder dedicat.\nActualizare centralizator cu date semnare si status.\nRevalidare anuala pentru toti angajatii activi.\nTraining explicativ pentru politici si mentinerea conformitatii.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "MADALINA NICOLAE", "exec": "HR RECRUITER"}, {"process": "logistics", "subproc": "Demand Forecasting & Planning", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Stock Forecast & Planning", "desc": "Call lunar cu stream-urile care folosesc stoc Fieldstar.\nColectare si validare necesar stoc pentru luna urmatoare.\nCentralizare info campanii, promotii, schimbari forecast.\nValidare stoc disponibil si analiza consum anterior.\nEstimare volume necesare si identificare blocaje.\nPrimire si centralizare info campanii comerciale de la PMI.\nDate: denumire/perioada campanie, tip produse, modificari pret, rulaje anticipate.\nValidare si integrare in planificarea stocurilor si comenzilor.\nConfirmare primire si interpretare impact operational.\nPregatire comenzi pe baza datelor transmise.", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Demand Forecasting & Planning", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Orders & Supply Flow", "desc": "Colectare si consolidare necesar stoc (consignatie).\nTransmitere necesar catre GTM luni pana la ora 10:00.\nInfo: produse, coduri, volume, stream, zona.\nConfirmare cantitati de la GTM inainte de comanda.\nPe baza necesarului confirmat, intocmire comanda finala catre Supply Chain.\nTrimitere luni pana la ora 12:00.\nComanda: produse, coduri, denumiri, cantitati, stream/zona.\nRespectare interval orar pentru evitarea blocajelor.\nSupply Chain proceseaza si livreaza conform termenului.", "freq": "WEEKLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock Reconciliation & Audit", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Stock Reconciliation & Accrual", "desc": "La finalul fiecarei luni, Stock Controller Fieldstar intocmeste si transmite fisierul de accrual catre Supply Chain.\nInclude: stocuri gratuite (FoC), discounturi comerciale aplicate pe campanii.\nDocument clar, corect, cu cantitati, tip produse, referinta campanie, justificare aplicare, perioada.\nTermen: N - 4 zile lucratoare inainte de finalul lunii.\nSupply Chain verifica si proceseaza accrual-ul in SAP", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock Reconciliation & Audit", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "WMS vs SAP Stock Reconciliation", "desc": "Reconciliere lunara intre stocurile fizice/operationale din WMS Fieldstar si SAP P1.\nTipuri stoc: consignatie (vanzare), custodie (FoC).\nScop: identificare si corectare diferente de volum, inregistrare sau tranzactionare.\nInclude validarea miscarilor, compararea rulajelor, verificarea soldurilor.\nTermen: primele 10 zile lucratoare ale lunii.", "freq": "MONTHLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock Reconciliation & Audit", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "WMS vs SAP Data validation", "desc": "Participare activa la intalnirea lunara de reconciliere cu echipele WMS si SAP P1.\nAre loc in a treia saptamana a lunii, dupa reconciliere si inainte de inchiderea SAP.\nScop: validare finala date, discutare discrepante, confirmare volume finale.\nStock Controller vine cu datele pregatite si propuneri de rezolvare.\nOPS / Supply Chain valideaza si decid ajustarile.", "freq": "MONTHLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Reporting & Continuous Improvement", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Weekly Stock Report", "desc": "Generare si transmitere raport saptamanal cu situatia stocurilor FDS (consignatie si custodie).\nDeadline: luni, EOD.\nInclude stoc disponibil curent pe fiecare categorie de produs.\nVerificare acuratete si transmitere catre stakeholderi relevanti.", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Reporting & Continuous Improvement", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Money Back Report", "desc": "Generare si transmitere raport Money Back (MB) catre echipa desemnata.\nTermen: max. 3 zile lucratoare de la finalul lunii.\nRaportul este utilizat pentru reconciliere lunara in Supply Chain.", "freq": "MONTHLY", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Reporting & Continuous Improvement", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Performance Reporting & Monitoring", "desc": "Generare si transmitere rapoarte de performanta pentru campanii promotionale.\nFrecventa: zilnic (campanii rulaj intens) / saptamanal (campanii de durata).\nInclude: rulaje per produs/categorie, zone, comparatie vs forecast, blocaje/discontinuitati.\nTransmitere conform interval agreat cu Promo Manager.", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock Control & Allocation", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Forecast & Stock Management", "desc": "Analiza consum stoc pe structuri: BE, CE, Shop Assistant.\nLa nivel SKU, pe baza rulaje istorice, activitati planificate, distributie geografica.\nEstimare necesar consum per zona/oras, transmitere instructiuni catre depozit.\nRaport include: SKU, stream, zona/oras, volum necesar, tip stoc.", "freq": "WEEKLY", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Field Inventory & Asset Tracking", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Field Support & Inventory KPI", "desc": "Verificare lunara daca fiecare supervisor a facut minim un inventar per angajat.\nInventarele sunt inregistrate in platforma si corelate cu responsabilul de stoc.\nLipsa inventar → comunicare preventiva cu supervisor pentru remediere.\nRaportare status complet inventare catre HR/Management.", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Field Inventory & Asset Tracking", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Stock Offboarding & Account Closure", "desc": "Proces pentru angajatii care parasesc organizatia (demisie/incetare contract).\nVerificare stocuri scriptice in WMS, notificare supervisor, transfer stoc.\nSuport pentru transfer daca supervisor indisponibil.\nConfirmare catre HR Systems dupa inchiderea gestiunii.", "freq": "ONGOING", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock & System Management", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Virtual Stocks & Special Promotions", "desc": "Incarcare si alocare stocuri virtuale pentru campanii sau promotii punctuale.\nStoc virtual = scriptic, nu marfa fizica.\nValidare profil user, incarcare pe SKU, monitorizare consum.", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock & System Management", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "WMS Product Creation", "desc": "Introducere si administrare produse noi in platforma logistica Fieldstar, conform cerintelor clientului.\nCategorii: produse de consignatie (cu pret si discount agreat) si produse de custodie (pentru promotii/materiale suport).\nCrearea produselor cu denumire corecta, setare pret, aplicare discount, alocare pe stream/proiect.\nTestare si confirmare functionare produs in platforma.", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Stock & System Management", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "SupportWMS Inbox Management", "desc": "Monitorizare permanenta inbox supportwms@fieldstar.ro pentru erori si solicitari operationale.\nActiuni: anulare tranzactii, procesare Money Back, inversare serie produs, deblocare device-uri, corectare transferuri blocate.\nAsigurare trasabilitate, timp optim de raspuns, colaborare cu IT, Logistica, HR sau PMO.", "freq": "ONGOING", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "logistics", "subproc": "Reporting & Continuous Improvement", "group": "LOGISTICS", "position": "STOCK CONTROLLER", "title": "Weekly Pending Transfer Report", "desc": "Monitorizare transferuri de stoc initiate si neacceptate in termen de 48h in platforma Fieldstar.\nExtrage lista saptamanala pentru toate structurile, identifica intarzierile si notifica persoanele implicate.\nSolicita motivul intarzierii, urmareste acceptarea sau justificarea si escaladeaza cazurile nerezolvate.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MELISA NOUR"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Field Support", "desc": "Acorda suport echipelor din teren pentru rezolvarea urgenta a situatiilor (dispute interne, greseli de pontaj, lipsa documente, neclaritati contractuale).\nColecteaza feedback si colaboreaza cu alte departamente pentru solutionare rapida si comunicare eficienta.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Certificates Issuance", "desc": "Redacteaza si elibereaza adeverinte oficiale (salariat, banci, locuinte, autoritati, documente personalizate).\nRespecta termen maxim de 3 zile lucratoare pentru emitere.", "freq": "ONGOING", "importance": "LOW", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "Payroll Preparation", "desc": "Intocmeste lunar statele de plata pentru toate structurile: salarii, bonusuri, incentive-uri, beneficii.\nVerifica pontajele si valorile aprobate inainte de procesarea finala in HR SYSTEMS.\nTransmite datele catre Payroll si Finance la timp.", "freq": "MONTHLY", "importance": "HIGH", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "Payslip Distribution", "desc": "Genereaza si transmite fluturasii de salariu in format digital catre toti angajatii.\nOfera raspunsuri punctuale la intrebari despre sume, retineri, compensatii.", "freq": "MONTHLY", "importance": "HIGH", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Disciplinary Actions", "desc": "Initiaza si coordoneaza cercetari disciplinare si avertismente.\nIntocmeste documentatia (convocari, note explicative, propuneri de sanctiune).\nMonitorizeaza cazurile active si transmite raport lunar catre BackOffice.", "freq": "ONGOING", "importance": "HIGH", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Contract Amendments", "desc": "Redacteaza acte aditionale pentru modificari de functie, salariu, relocare, program.\nRespecta termenele legale de notificare si arhivare interna.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Termination & Post-Contract Certificates", "desc": "Emite decizii de incetare a contractului si documentele aferente (adeverinta de vechime, adeverinta CAS, fisa de lichidare).\nLivreaza documentele in ziua incetarii sau in termenul legal.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Salary Garnishments", "desc": "Prelucreaza si gestioneaza documentele legale de poprire sau amenda salariala (ANAF, executori, instante).\nOpereaza retinerile corect si comunica cu institutiile solicitante.\nInformeaza angajatul cu privire la procedura aplicata.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Special Leave Files", "desc": "Intocmeste si actualizeaza dosarele pentru CIC (concediu crestere copil), sarcina risc, revenire in activitate.\nRaporteaza periodic catre PMI si colaboreaza cu echipele interne pentru reintegrarea angajatului.\nGestioneaza pasii administrativi, pontajul si accesul in platforme.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Benefits Claims Processing", "desc": "Asigura transmiterea la timp a documentelor necesare pentru obtinerea indemnizatiilor (CIC, concedii medicale, somaj tehnic etc.).\nTrimite documentele catre institutiile relevante (ITM, AJOFM, Casa de Asigurari).", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Monthly Benefits Verification", "desc": "Verifica lunar listele de angajati eligibili pentru tichete de masa, carduri sau alte beneficii.\nCoreleaza cu prezenta si pontajul si comunica cu furnizorii (ex: Edenred).", "freq": "MONTHLY", "importance": "LOW", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Audit & Compliance Prep", "desc": "Pregateste documentatia pentru controale oficiale sau audituri ale clientilor (fise de post, contracte, pontaje, evidente salariale, avize de angajare).", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Reporting", "desc": "Centralizeaza si transmite raport HR sintetic (headcount activ, rotatie, motive plecare, nivel salarizare, absenteism, bonusuri acordate) catre Account Management", "freq": "MONTHLY", "importance": "LOW", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Probation Tracking", "desc": "Urmareste angajatii in perioada de proba si trimite remindere catre coordonatori cu minim 5 zile inainte de expirare.\nSprijina decizia de pastrare sau incetare.", "freq": "MONTHLY", "importance": "LOW", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Archive Management", "desc": "Organizeaza arhiva fizica si digitala conform standardelor GDPR si audit intern.\nAsigura acces restrictionat, salvare periodica si sortare logica/cronologica a dosarelor.", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "human-resources", "subproc": "Personnel Administration", "group": "HUMAN RESOURCES", "position": "HR ADMIN", "title": "HR Voluntary Termination Processing", "desc": "Gestioneaza procesul administrativ de incetare la initiativa angajatului.\nPreia notificarea de demisie, comunica detaliile, ofera suport privind pasii urmatori.\nRedacteaza decizia de incetare, planifica semnarea si actualizeaza REVISAL in termen legal.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "ANDREEA DOBRE", "exec": "GEORGIANA PUTARU"}, {"process": "asset-workforce-support", "subproc": "Financial & Cost Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "HoReCa Voucher Project Coordination", "desc": "Gestioneaza complet proiectul de vouchere HoReCa in cadrul activitatilor Brand Ambassadors.\nIdentifica si valideaza locatiile eligibile impreuna cu echipa PMT.\nVerifica existenta contractelor cu locatiile partenere si derularea corecta a campaniei.\nCentralizeaza lunar costurile pe locatie, transmite raport catre Philip Morris si gestioneaza facturarea corecta in Teamogy.\nMentine trasabilitatea contractelor, rapoartelor, PO-urilor si facturilor.", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Tools & Equipment Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Activation Uniforms Management", "desc": "Responsabil de întregul proces de propunere, aprobare, producție și distribuție a uniformelor pentru structura de teren.\nInclude research, mock-up-uri și design-uri vizuale conform brandului.\nSelectarea furnizorului, confirmare preț și termene, colectarea măsurilor.\nCoordonarea livrării și distribuției către teren prin logistică Fieldstar.\nTrasabilitate completă a distribuției.", "freq": "QUARTERLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Tools & Equipment Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Activation Uniforms Financial Management", "desc": "Responsabil de componenta financiară a livrării uniformelor.\nEstimarea și aprobarea costurilor\nDeschiderea proiectului în Teamogy și introducerea datelor de cost.\nEmiterea PO-ului și facturarea către client.\nCoordonare cu logistică și financiar pentru plata către furnizor.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Employee Mobility & Travel", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Accommodation & Per Diem Logistics", "desc": "Coordonarea logistică și financiară a deplasărilor echipelor de teren.\nComunicare cu clientul pentru detalii eveniment și aprobare buget. Cooperare cu agenția de turism pentru rezervări.\nGestionarea diurnelor și transmiterea către financiar.\nCentralizarea și raportarea costurilor către client.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Employee Mobility & Travel", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Accommodation & Per Diem Financials", "desc": "Estimarea, aprobarea și urmărirea costurilor pentru cazări și diurne. \nPrimirea și validarea ofertelor de la agenția de turism.\nDeschiderea proiectului în Teamogy și adăugarea furnizorului.\nValidarea PO-ului, facturarea către client și plata către furnizor.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Employee Mobility & Travel", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Field Expense Management", "desc": "Gestionarea deconturilor lunare și ocazionale pentru angajați din teren.\nColectarea și validarea cererilor cu documente justificative.\nCompletarea centralizatorului Excel pentru status solicitări.\nColaborarea cu financiar pentru plăți.\nRaportare lunară către management și identificarea dublurilor.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Financial & Cost Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Event Activation Management", "desc": "Planificarea și coordonarea evenimentelor speciale cu Philip Morris.\nPrimirea brief-ului oficial și pregătirea logistică și operațională.\nEstimarea și comanda de stocuri, recrutarea operatorilor.\nGestionarea cazărilor, diurnelor, echipamentelor și POS-urilor.\nParticipare la evenimente și suport live în timp real.\nCentralizarea costurilor și aprobare client.", "freq": "ONGOING", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Financial & Cost Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "Cash Management", "desc": "Verificarea și urmărirea depunerilor banilor cash din teren.\nCompararea vânzărilor din POS cu sumele depuse.\nContactarea TL-ilor în caz de diferențe sau întârzieri.\nDocumentarea abaterilor și notificarea financiarului pentru măsuri disciplinare.\nRaportare săptămânală către management și client.", "freq": "WEEKLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "ANDREEA C-TIN"}, {"process": "asset-workforce-support", "subproc": "Reporting", "group": "ASSET & WORKFORCE SUPPORT", "position": "ACCOUNT MANAGER", "title": "POS Plan (Planning & Support)", "desc": "Colectarea, validarea și consolidarea informațiilor despre activările POS.\nCompletarea planului săptămânal și verificarea eligibilității locațiilor.\nCorelarea cu programul Sales Experților.\nTransmiterea planului final către Project Owner, HR și Logistică.", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ALEXANDRA MOISE"}, {"process": "account-management", "subproc": "Knowledge & Process Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT MANAGER", "title": "Monthly Testing Management – Field Teams", "desc": "Gestionarea procesului de testare lunară a angajaților din teren.\nVerificarea accesului, asigurarea participării complete.\nAcordarea suportului tehnic pentru probleme de acces.\nRaportarea rezultatelor consolidate către management.", "freq": "MONTHLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "ALEXANDRA MOISE"}, {"process": "account-management", "subproc": "Knowledge & Process Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT MANAGER", "title": "OJT Monitoring & Reporting", "desc": "Gestionarea procesului de On the Job Training (OJT).\nIntroducerea datelor în platforma Fieldstar.\nMonitorizarea efectuării OJT-urilor și raportarea lunară.\nIdentificarea supervisorilor cu performanță scăzută.\nComunicarea concluziilor către HR și Project Owneri.", "freq": "WEEKLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "ALEXANDRA MOISE"}, {"process": "account-management", "subproc": "Knowledge & Process Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT MANAGER", "title": "Field Performance Reporting", "desc": "Construiește si transmite un raport care evalueaza performanta locatiilor in care s-au desfasurat activari de Brand Engagement (HoReCa, evenimente, magazine etc.)\nInclude date precum volum interactiuni, eficienta locatiei, nevoi suplimentare sau feedback operational", "freq": "WEEKLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ALEXANDRA MOISE"}, {"process": "account-management", "subproc": "Knowledge & Process Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT MANAGER", "title": "Feedback Reporting", "desc": "Colecteaza feedback-ul din teren referitor la campaniile de Consumer Engagement & Brand Engagement\nAnalizeaza datele cantitative si calitative si le centralizeaza intr-un format standard\nContribuie la imbunatatirea campaniilor viitoare si comunicarea performantelor catre echipele de management si client", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "ALEXANDRA MOISE"}, {"process": "account-management", "subproc": "Budget & Financial Control", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT MANAGER", "title": "Payroll Difference & Exceptional Cases Approval (Post-Timesheet)", "desc": "Monitorizeaza, valideaza si comunica diferente salariale aparute in urma pontajului lunar sau in situatii administrative exceptionale (absente nejustificate, neconcordante raportate, schimbari retroactive de norma etc.)\nAsigura acuratetea salarizarii si transparenta in relatia cu angajatii si clientul\nCoordoneaza cu HR Administrativ Fieldstar si partenerul extern PMI\nCentralizeaza lunar toate exceptiile intr-un fisier securizat si comunica proactiv cu clientul in caz de impact bugetar", "freq": "MONTHLY", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "ALEXANDRA MOISE"}, {"process": "field-management", "subproc": "OJT & Evaluation", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "OJT CEX & Team Leader", "desc": "Programeaza si efectueaza cate 1 sesiune OJT/luna cu fiecare CEX/Team Leader\nInsoteste in teren si observa metodele de coordonare, evaluare si motivare\nLivreaza fisa de feedback interna + recomandari de imbunatatire", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Monitoring & Control", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Mystery Visit", "desc": "Realizeaza vizite surpriza la puncte de activare (magazine/HoReCa) pentru validarea prezentei, respectarea scriptului, echipamentului si comportamentului\nLivreaza raport Mystery Visit + poza + scor activare + propunere sanctiune/recompensa", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Feedback & Insights", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Critical Situations Field Support & Intervention", "desc": "Intervine direct in cazuri de reclamatii, refuzuri de colaborare, absente repetate sau situatii sensibile (atitudine neprofesionista, agresivitate verbala etc.)\nLivreaza raport scurt cu actiunea si follow-up la 7 zile", "freq": "ONGOING", "importance": "HIGH", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Feedback & Insights", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Check-In vs. Field Activity Check", "desc": "Analizeaza pe esantion daca pontajele reflecta realitatea din teren\nLivreaza raport de alerta catre Account Manager/HR in caz de discrepante", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Monitoring & Control", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "POS, Equipment & Uniform Implementation Check", "desc": "Verifica fizic respectarea instructiunilor pentru POS, program si uniforme\nLivreaza poza de activare vs. checklist implementare + raport catre logistica daca lipsesc echipamente", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "OJT & Evaluation", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Individual Coaching & Field Intervention for Low Performance", "desc": "Desfasoara sesiuni de coaching individual pe baza rapoartelor de vanzari / evaluari OJT\nLivreaza plan de remediere + revizita dupa 2 saptamani", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Monitoring & Control", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Events Supervision & Support", "desc": "Participa la evenimente majore si activari speciale\nSprijina coordonarea echipelor, interventiile logistice si asigura livrarea impecabila\nLivreaza raport de prezenta + observatii live catre AM sau client", "freq": "ONGOING", "importance": "LOW", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Reporting", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Field Performance Reporting", "desc": "Trimite raport lunar catre AD / Director BU cu status teren\nInclude: nr. vizite teren, scoruri OJT, nereguli observate, feedback direct din field\nPropune sugestii de optimizare si actiuni de imbunatatire\nSustine deciziile privind optimizare, retentie, coaching si scalare", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "field-management", "subproc": "Reporting", "group": "FIELD MANAGEMENT", "position": "FIELD MANAGER", "title": "Feedback & Insights", "desc": "Colecteaza constant feedback calitativ si cantitativ din teren\nInclude discutii directe cu angajatii si personalul locatiilor comerciale\nIdentifica disfunctionalitati in activare, lipsuri in dotari sau materiale\nCentralizeaza observatiile si le transmite saptamanal catre echipa interna si client", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "MARIUS MANASIA"}, {"process": "account-management", "subproc": "Budget & Financial Control", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Project P&L Management", "desc": "Gestioneaza complet bugetul alocat proiectului sau stream-ului\nMonitorizeaza performanta financiara si analizeaza devierile fata de forecast\nPropune masuri de optimizare a costurilor si eficientizare\nColaboreaza cu departamentul financiar pentru facturare si ajustarea bugetului\nMentine transparenta financiara in relatia cu clientul", "freq": "QUARTERLY", "importance": "HIGH", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Performance Management", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Ownership Strategy & KPI Alignment", "desc": "Stabileste o structura eficienta de delegare si ownership pe roluri\nDefineste limitele de autonomie pentru AM, Field Manager, CEX\nOfera coaching lunar 1:1 pentru AM sau FM cu dificultati\nIntervine doar pe exceptii sau nevoi strategice", "freq": "ONGOING", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Performance Management", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Client Relationship & Insights Management", "desc": "Mentine relatia strategica si consultativa cu clientul\nParticipa la intalniri lunare si propune solutii proactive\nTransmite update-uri sintetice cu progres, KPI si blocaje\nRepoziționeaza Fieldstar ca partener, nu doar furnizor", "freq": "ONGOING", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Retention & Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Strategic Planning & Resource Forecasting", "desc": "Contribuie la planificarea strategica anuala a proiectului\nColaboreaza cu HR si Financiar pentru estimari de headcount si costuri\nPrioritizeaza nevoile critice si ajusteaza structura in functie de sezonalitate\nLivreaza forecast de buget si structura echipei pe termen lung", "freq": "ONGOING", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Knowledge & Process Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Process Evaluation & Deployment Optimization", "desc": "Evalueaza lunar fluxurile proiectului si propune imbunatatiri\nIdentifica taskuri redundante si le elimina sau optimizeaza\nLucreaza cu echipa de reporting pentru integrarea schimbarilor in platforme\nLivreaza lunar propuneri de optimizare si implementari validate", "freq": "QUARTERLY", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Performance Management", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Quarterly Stakeholder Engagement", "desc": "Mentine conexiuni trimestriale cu stakeholderii cheie ai clientului\nCreeaza un sistem de relationare: vizite, status call-uri, aliante strategice\nIdentifica din timp trenduri si nevoi ale clientului\nDevine partener real in deciziile strategice ale clientului", "freq": "QUARTERLY", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Retention & Improvement", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Retention & Performance Programs", "desc": "Co-autor al programelor de retentie si motivare in teren\nPropune beneficii, recunoastere si sisteme de bonus\nAjusteaza structura echipei in functie de feedback real\nPrioritizeaza moralul si implicarea angajatilor", "freq": "ONGOING", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Performance Management", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Responsibility Delegation & Urgent Task Filtering", "desc": "Acționează ca filtru pentru taskurile urgente primite de la client.\nDecide dacă sunt reale urgențe, cui se deleagă și dacă se integrează fără a bloca alte fluxuri.\nPrioritizează taskurile și comunică clar cu clientul ce se poate face.\nProtejează echipele interne de suprasarcină.\nEvită haosul operațional.", "freq": "ONGOING", "importance": "LOW", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Budget & Financial Control", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Final Cost Approval & Operational Expense Coordination", "desc": "Coordonează procesul de aprobare a costurilor operaționale lunare.\nValidează pontajele echipelor din teren și confirmă sumele pentru salarii și bonusuri.\nVerifică excepțiile de pontaj și corectitudinea acestora.\nIntrodu datele finale în Teamogy pentru proiecte și PO-uri.\nValidează și aprobă facturarea către client conform contractelor și livrabilelor.", "freq": "MONTHLY", "importance": "HIGH", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Performance Management", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Team Coordination, Development & Performance Evaluation", "desc": "Responsabil direct asupra echipei de subordine (AM, AE, BA).\nRealizează inducția și onboarding-ul noilor membri.\nMonitorizează activitatea și oferă feedback constructiv.\nSusține întâlniri 1:1 și evaluări trimestriale.\nIdentifică nevoile de training și gestionează conflictele din echipă.", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Reporting & Insights", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Monthly Commercial Performance Monitoring", "desc": "Monitorizează, analizează și raportează performanța comercială pentru toate stream-urile PMI.\nEvaluează rezultatele pe BU, stream, TMC și regiune.\nColectează și consolidează datele din platforme interne și externe.\nPrezintă dashboard lunar de performanță.\nPropune acțiuni corective în zonele de sub-performanță.", "freq": "WEEKLY", "importance": "HIGH", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Reporting & Insights", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "KPI Monitoring & Management", "desc": "Monitorizează și coordonează KPI-urile contractuale pentru toate stream-urile.\nOrganizează ședințe lunare de KPI Review.\nCentralizează și raportează rezultatele lunare către PMI.\nDocumentează și validează KPI-urile prin livrabile justificative.\nAsigură creșterea predictibilității și performanței proiectului", "freq": "MONTHLY", "importance": "HIGH", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "account-management", "subproc": "Reporting & Insights", "group": "ACCOUNT MANAGEMENT", "position": "ACCOUNT DIRECTOR", "title": "Operational Fraud Detection & Prevention", "desc": "Identifică și previne tentativele de fraudă în activitatea de teren sau în sistemele digitale.\nMonitorizează datele consumatorilor și activitățile de vânzare/acordare premii.\nInvestigă pattern-uri suspecte și erori sistematice.\nCoordonează măsurile disciplinare în caz de abateri.\nIntegrează statusul prevenirii fraudei în raportările KPI.", "freq": "MONTHLY", "importance": "HIGH", "owner": "COSMIN PANAIT", "exec": "BOGDAN DUMITRU"}, {"process": "asset-workforce-support", "subproc": "Fleet Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "GENERAL SERVICES", "title": "Fleet Administration & Optimization", "desc": "Administrează parcul auto al companiei.\nPropune achiziții sau închirieri pe baza analizelor de cost-beneficiu.\nMonitorizează kilometrajul, reparațiile și service-urile.\nGestionează documentația și cazurile de accidente.\nOptimizează costurile logistice.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "GABRIEL MIHALACHE"}, {"process": "asset-workforce-support", "subproc": "Tools & Equipment Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "GENERAL SERVICES", "title": "Field Activation Tools Administration", "desc": "Gestionează echipamentele operaționale din teren.\nSe asigură că fiecare angajat primește tool-ul necesar activității.\nActualizează platforma de gestiune la predare/recuperare.\nCoordonează recuperarea echipamentelor la final de colaborare.\nMenține evidența completă și actualizată a tool-urilor.", "freq": "ONGOING", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "GABRIEL MIHALACHE"}, {"process": "asset-workforce-support", "subproc": "Financial & Cost Management", "group": "ASSET & WORKFORCE SUPPORT", "position": "GENERAL SERVICES", "title": "Tool Cost Estimation, Budgeting & Invoicing", "desc": "Estimează costurile pentru echipamentele utilizate în proiectele PMI.\nElaborează propuneri detaliate pentru client.\nDeschide proiecte în Teamogy și introduce costurile aprobate.\nUrmărește PO-urile și facturarea finală.\nAsigură acuratețea și justificarea fiecărui cost.", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "GABRIEL MIHALACHE"}, {"process": "asset-workforce-support", "subproc": "Asset Tracking & Compliance", "group": "ASSET & WORKFORCE SUPPORT", "position": "GENERAL SERVICES", "title": "Training & Reporting – Fleet and Tools Usage", "desc": "Organizează training pentru utilizarea corectă a mașinilor și tool-urilor.\nMonitorizează completarea foilor de parcurs lunar.\nAnalizează datele privind kilometrajul și consumul de combustibil.\nColaborează cu financiarul pentru facturare și validare documente.\nOptimizează costurile logistice prin respectarea procedurilor.", "freq": "MONTHLY", "importance": "MEDIUM", "owner": "BOGDAN DUMITRU", "exec": "GABRIEL MIHALACHE"}], "validation": {"totals": {"tasks": 99, "high": 24, "med": 59, "low": 16}, "unknown_process": [], "unknown_subproc": [{"row": 3, "process": "HUMAN RESOURCES", "value": "Reporting"}, {"row": 19, "process": "HUMAN RESOURCES", "value": "Payroll"}, {"row": 22, "process": "HUMAN RESOURCES", "value": "Payroll"}, {"row": 25, "process": "HUMAN RESOURCES", "value": "Payroll"}, {"row": 41, "process": "LOGISTICS", "value": "Stock & System Management"}, {"row": 42, "process": "LOGISTICS", "value": "Stock & System Management"}, {"row": 43, "process": "LOGISTICS", "value": "Stock & System Management"}, {"row": 69, "process": "ASSET & WORKFORCE SUPPORT", "value": "Reporting"}, {"row": 87, "process": "ACCOUNT MANAGEMENT", "value": "Retention & Improvement"}, {"row": 90, "process": "ACCOUNT MANAGEMENT", "value": "Retention & Improvement"}], "missing_critical": [], "freq_normalized": 0, "importance_normalized": 0, "typo_fixes": 14}};
+<script>
+  const PAYLOAD = {/* ... payload mare cu tasks/proceses/validation ... */};
+
   let PROCESSES = PAYLOAD.processes || [];
   const TASKS = PAYLOAD.tasks || [];
   const VALID  = PAYLOAD.validation || {};
   const el = s => document.querySelector(s);
   const els = s => Array.from(document.querySelectorAll(s));
-  const toASCII = s => (s||"").normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');
+  const toASCII = s => (s||"").normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   const canon = s => toASCII(String(s||'').toUpperCase());
   const escapeHtml = s => String(s||"").replace(/[&<>\"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 
@@ -1009,9 +1048,7 @@ body.modal-open{ overflow: hidden !important; }
   window.addEventListener("resize", calcStickyTop);
   window.addEventListener("load", calcStickyTop);
 
-  
   function iconFor(pid){
-    // simple inline SVGs, stroke=currentColor
     const s = (svg)=>`<span class="ico">${svg}</span>`;
     switch(pid){
       case 'human-resources': return s('<svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>');
@@ -1024,20 +1061,20 @@ body.modal-open{ overflow: hidden !important; }
   }
 
   function getFrequenciesFromTasks() {
-  const freqs = new Set();
-  PAYLOAD.tasks.forEach(t => {
-    if (t.frequency && String(t.frequency).trim() !== '') {
-      freqs.add(t.frequency.trim());
-    }
-  });
-  return Array.from(freqs).sort((a,b) => a.localeCompare(b));
-}
+    const freqs = new Set();
+    PAYLOAD.tasks.forEach(t => {
+      if (t.frequency && String(t.frequency).trim() !== '') {
+        freqs.add(t.frequency.trim());
+      }
+    });
+    return Array.from(freqs).sort((a,b) => a.localeCompare(b));
+  }
 
-function getImportanceList() {
-  return ['HIGH', 'MED', 'LOW'];
-}
+  function getImportanceList() {
+    return ['HIGH', 'MED', 'LOW'];
+  }
 
-function buildKPIs(filteredCounts){
+  function buildKPIs(filteredCounts){
     const k = el("#kpis");
     if(k) k.innerHTML = `<div class="kpi"><strong>${TASKS.length}</strong>&nbsp;TASKS</div>`;
     const {high=0,med=0,low=0} = filteredCounts||{};
@@ -1047,7 +1084,6 @@ function buildKPIs(filteredCounts){
     el("#kMed").textContent  = `MEDIUM ${med} (${P(med)})`;
     el("#kLow").textContent  = `LOW ${low} (${P(low)})`;
   }
-
   function buildTree(){
     const t = el("#tree");
     if(!t) return;
@@ -1143,14 +1179,14 @@ function buildKPIs(filteredCounts){
     const f = state.filters;
     function addChip(label,key){
       const val = f[key]; if(!val) return;
-      chips.push(`<span class="chip">${label}: ${escapeHtml(val)} <button data-key="${key}" title="Clear">×<</span>`);
+      chips.push(`<span class="chip">${label}: ${escapeHtml(val)} <button data-key="${key}" title="Clear">×</button></span>`);
     }
     addChip("Position","pos");
     addChip("Owner","owner");
     addChip("Executor","exec");
     addChip("Importance","imp");
     addChip("Frequency","freq");
-    if(state.query){ chips.push(`<span class="chip">Search: ${escapeHtml(state.query)} <button data-key="query" title="Clear">×<</span>`); }
+    if(state.query){ chips.push(`<span class="chip">Search: ${escapeHtml(state.query)} <button data-key="query" title="Clear">×</button></span>`); }
     c.innerHTML = chips.join("");
     c.querySelectorAll("button").forEach(b=>{
       b.addEventListener("click", ()=>{
@@ -1207,16 +1243,7 @@ function buildKPIs(filteredCounts){
   }
 
   let state = { process:null, subproc:null, query:"", filters:{pos:"",owner:"",exec:"",imp:"",freq:""}, showDesc:true };
-
-  function resetAndApplyFilter(field, value) {
-  state.filters = {};
-  if (value && value.trim() !== '') {
-    state.filters[field] = [value];
-  }
-  applyFilters();
-}
-
-function applyFilters(){
+  function applyFilters(){
     const list = listFiltered();
     const tbody = el("#tbody"); if(!tbody) return;
     tbody.innerHTML = list.length ? list.map(rowHTML).join("") : `<tr><td colspan="5" id="empty" style="text-align:center;color:#777;padding:24px">No tasks for this selection.</td></tr>`;
@@ -1224,7 +1251,6 @@ function applyFilters(){
     updateChips();
     buildKPIs(countsByImportance(list));
   }
-
   function exportExcel(){
     const list = listFiltered();
     if(!list.length){ alert("Nothing to export. Adjust filters."); return; }
@@ -1294,33 +1320,16 @@ function applyFilters(){
 
   function attachEvents(){
   const sPos = el("#f-pos");
-  if(sPos) sPos.addEventListener("change", ()=>{
-    state.filters = {};
-    state.filters.pos = sPos.value;
-    applyFilters();
-  });
-
-    
-  
-  const sImp = el("#f-imp");
-  if (sImp) sImp.addEventListener("change", () => {
-    state.filters = {};
-    state.filters.imp = sImp.value;
-    applyFilters();
-  });
-const sOwner = el("#f-owner");
-  if (sOwner) sOwner.addEventListener("change", () => {
-    state.filters = {};
-    state.filters.owner = sOwner.value;
-    applyFilters();
-  });
-
+  const sOwner = el("#f-owner");
   const sExec = el("#f-exec");
-  if (sExec) sExec.addEventListener("change", () => {
-    state.filters = {};
-    state.filters.exec = sExec.value;
-    applyFilters();
-  });
+  const sFreq = el("#f-freq");
+  const sImp = el("#f-imp");
+
+  if (sPos) sPos.addEventListener("change", () => { state.filters.pos = sPos.value; applyFilters(); pushHash(); });
+  if (sOwner) sOwner.addEventListener("change", () => { state.filters.owner = sOwner.value; applyFilters(); pushHash(); });
+  if (sExec) sExec.addEventListener("change", () => { state.filters.exec = sExec.value; applyFilters(); pushHash(); });
+  if (sFreq) sFreq.addEventListener("change", () => { state.filters.freq = sFreq.value; applyFilters(); pushHash(); });
+  if (sImp) sImp.addEventListener("change", () => { state.filters.imp = sImp.value; applyFilters(); pushHash(); });
 const btnSearch = el("#btn-search");
     const q = el("#q");
     const btnClear = el("#btn-clear");
@@ -1399,1013 +1408,3 @@ if(btnCopy) btnCopy.addEventListener("click", async ()=>{
   }
 
 })();
-</script><script defer="True">
-// v8 SAFE RELOAD + WAIT-FOR-INIT
-(function(){
-  const KEY = "esf_replace_payload";
-  function applyIncoming(incoming){
-    // Merge in-place into PAYLOAD/TASKS/PROCESSES/VALID
-    if (window.PAYLOAD && typeof window.PAYLOAD === "object") {
-      if (!Array.isArray(window.PAYLOAD.processes)) window.PAYLOAD.processes = [];
-      window.PAYLOAD.processes.splice(0, window.PAYLOAD.processes.length, ...(incoming.processes || []));
-      if (!Array.isArray(window.PAYLOAD.tasks)) window.PAYLOAD.tasks = [];
-      window.PAYLOAD.tasks.splice(0, window.PAYLOAD.tasks.length, ...(incoming.tasks || []));
-      if (!window.PAYLOAD.validation) window.PAYLOAD.validation = {};
-      var totals = { tasks: (incoming.tasks||[]).length, high:0, med:0, low:0 };
-      (incoming.tasks||[]).forEach(t=>{
-        const imp = String(t.importance||"").toUpperCase();
-        if (imp==="HIGH") totals.high++; else if (imp==="MEDIUM") totals.med++; else if (imp==="LOW") totals.low++;
-      });
-      const valid = incoming.validation || { totals };
-      Object.keys(window.PAYLOAD.validation).forEach(k=>delete window.PAYLOAD.validation[k]);
-      Object.assign(window.PAYLOAD.validation, valid);
-    }
-    if (typeof window.PROCESSES !== "undefined") window.PROCESSES = window.PAYLOAD.processes;
-    if (typeof window.TASKS !== "undefined" && Array.isArray(window.TASKS)) window.TASKS.splice(0, window.TASKS.length, ...window.PAYLOAD.tasks);
-    if (typeof window.VALID !== "undefined" && window.VALID) { Object.keys(window.VALID).forEach(k=>delete window.VALID[k]); Object.assign(window.VALID, window.PAYLOAD.validation); }
-  }
-  function rebuild(){
-    if (typeof window.buildTree === "function") window.buildTree();
-    if (typeof window.fillSelects === "function") window.fillSelects();
-    if (typeof window.applyFilters === "function") window.applyFilters();
-    if (typeof window.buildKPIs === "function") window.buildKPIs(window.PAYLOAD.validation.totals);
-  }
-  function toast(){
-    const note = document.createElement("div");
-    note.textContent = "✅ Upload aplicat după reload.";
-    note.style.position="fixed"; note.style.right="16px"; note.style.bottom="16px";
-    note.style.background="#e8f8ef"; note.style.border="1px solid #20a464";
-    note.style.padding="10px 14px"; note.style.borderRadius="10px"; note.style.zIndex="9999";
-    document.body.appendChild(note);
-    setTimeout(()=>note.remove(), 3000);
-  }
-
-  const raw = sessionStorage.getItem(KEY);
-  if (!raw) return;
-  const incoming = JSON.parse(raw);
-  sessionStorage.removeItem(KEY);
-
-  // Wait for the app to be ready (PAYLOAD + buildTree etc.)
-  let tries = 0;
-  const timer = setInterval(()=>{
-    tries++;
-    const ready = !!(window.PAYLOAD && (typeof window.buildTree === "function" || document.getElementById("tree")));
-    if (ready || tries > 100) {
-      clearInterval(timer);
-      try { applyIncoming(incoming); rebuild(); toast(); } catch(e){ console.error("v8 bootstrap error:", e); }
-    }
-  }, 100);
-})();
-</script><script defer="True">
-// v8 Data Check Upload UI (stores payload then triggers reload)
-(function(){
-  function byId(id){ return document.getElementById(id); }
-  function msg(txt, type){
-    const val = byId("valContent"); if (!val) return;
-    const d = document.createElement("div"); d.innerHTML = txt;
-    d.style.margin="6px 0"; d.style.padding="6px 8px"; d.style.borderRadius="10px";
-    d.style.background = type==="ok" ? "#e8f8ef" : (type==="warn" ? "#fff4e5" : "#ffe8e8");
-    d.style.border = type==="ok" ? "1px solid #20a464" : (type==="warn" ? "1px solid #f28c2a" : "1px solid #d33");
-    val.prepend(d);
-  }
-  function styleBtn(b){ b.style.padding="8px 14px"; b.style.border="1px solid #f28c2a"; b.style.borderRadius="12px"; b.style.cursor="pointer"; b.style.background="white"; }
-
-  async function parseFile(file){
-    const text = await file.text(); const lower = file.name.toLowerCase();
-    let incoming;
-    if (lower.endsWith(".json")) incoming = JSON.parse(text);
-    else if (lower.endsWith(".csv")){
-      const rows = text.split(/\r?\n/).filter(Boolean); if (rows.length<2) throw new Error("CSV must have header + rows.");
-      const header = rows[0].split(",").map(s=>s.trim().toUpperCase());
-      const tasks = rows.slice(1).map(line=>{
-        const vals=line.split(",").map(s=>s.trim()); const o={};
-        header.forEach((h,i)=>{
-          const v=(vals[i]||"").trim();
-          if (h==="PROCESS") o.process = v.toLowerCase().replace(/\s+/g,"-");
-          if (h==="SUB-PROCESS") o.subproc = v;
-          if (h==="POSITION") o.position = v;
-          if (h==="KEY ACTIVITY") o.title = v;
-          if (h==="DESCRIPTION") o.desc = v;
-          if (h==="FREQUENCY") o.freq = v.toUpperCase();
-          if (h==="IMPORTANCE") o.importance = v.toUpperCase();
-          if (h==="OWNER") o.owner = v;
-          if (h==="EXECUTOR") o.exec = v;
-        });
-        o.group = (o.process||"").replace(/-/g," ").toUpperCase();
-        return o;
-      });
-      const procMap={}; tasks.forEach(t=>{ if(!t.process) return; procMap[t.process]=procMap[t.process]||new Set(); if(t.subproc) procMap[t.process].add(t.subproc); });
-      const processes = Object.entries(procMap).map(([id,subs])=>({id, name:id.replace(/-/g," ").toUpperCase(), subs:[...subs]}));
-      incoming = { processes, tasks };
-    } else throw new Error("Folosește .json sau .csv");
-    (incoming.tasks||[]).forEach(t=>{ t.freq=String(t.freq||"").toUpperCase(); t.importance=String(t.importance||"").toUpperCase(); t.process=String(t.process||"").toLowerCase(); t.group=t.group||t.process.replace(/-/g," ").toUpperCase(); });
-    return incoming;
-  }
-
-  function validateData(incoming){
-    const processes=(incoming.processes||[]).map(p=>p.id);
-    const subsByProc=new Map((incoming.processes||[]).map(p=>[p.id,new Set(p.subs||[])]));
-    const unknown_process=[], unknown_subproc=[], missing_critical=[]; let high=0,med=0,low=0;
-    (incoming.tasks||[]).forEach((t,i)=>{
-      const row=i+1;
-      ["process","subproc","position","title","freq","importance"].forEach(k=>{ if(!t[k]||String(t[k]).trim()==="") missing_critical.push(row); });
-      if (t.importance==="HIGH") high++; else if (t.importance==="MEDIUM") med++; else if (t.importance==="LOW") low++;
-      if (!processes.includes(t.process)) unknown_process.push({row, value:(t.group||t.process||"").toString().toUpperCase()});
-      const set=subsByProc.get(t.process);
-      if (set && t.subproc && !set.has(t.subproc)) unknown_subproc.push({row, process:(t.group||"").toString().toUpperCase(), value:t.subproc});
-    });
-    return { totals:{tasks:(incoming.tasks||[]).length, high, med, low}, unknown_process, unknown_subproc, missing_critical };
-  }
-
-  function renderBar(valEl){
-    if (!valEl || document.getElementById("dc-import-bar")) return;
-    const bar=document.createElement("div");
-    bar.id="dc-import-bar";
-    bar.style.display="grid"; bar.style.gridTemplateColumns="auto auto auto"; bar.style.gap="10px";
-    bar.style.alignItems="center"; bar.style.border="1px dashed #f28c2a"; bar.style.padding="10px 12px"; bar.style.borderRadius="12px"; bar.style.margin="8px 0 12px 0"; bar.style.background="#fffaf6";
-
-    const btnChoose=document.createElement("button"); btnChoose.textContent="Choose file"; styleBtn(btnChoose);
-    const btnValidate=document.createElement("button"); btnValidate.textContent="Validate file"; styleBtn(btnValidate); btnValidate.disabled=true;
-    const btnApply=document.createElement("button"); btnApply.textContent="Apply to interface"; styleBtn(btnApply); btnApply.disabled=true;
-    const input=document.createElement("input"); input.type="file"; input.accept=".json,.csv"; input.style.display="none";
-
-    function showPreview(v){
-      const val = valEl;
-      const lines=[];
-      lines.push(`Tasks: ${v.totals.tasks} (HIGH ${v.totals.high}, MEDIUM ${v.totals.med}, LOW ${v.totals.low})`);
-      if (v.missing_critical.length) lines.push(`Missing critical fields (row): ${v.missing_critical.slice(0,50).join(", ")}`);
-      if (v.unknown_process.length){ lines.push(`Unknown PROCESS (${v.unknown_process.length}):`); v.unknown_process.slice(0,50).forEach(x=>lines.push(`  - row ${x.row}: "${x.value}"`)); }
-      if (v.unknown_subproc.length){ lines.push(`Unknown SUB-PROCESS (${v.unknown_subproc.length}):`); v.unknown_subproc.slice(0,50).forEach(x=>lines.push(`  - row ${x.row} [${x.process}]: "${x.value}"`)); }
-      val.innerHTML = "<pre style='white-space:pre-wrap;'>" + lines.join("\n") + "</pre>";
-    }
-
-    btnChoose.addEventListener("click", ()=>input.click());
-    input.addEventListener("change", async ()=>{
-      const f=input.files&&input.files[0]; if (!f) return;
-      try{ const incoming=await parseFile(f); window._uploadedData=incoming; btnValidate.disabled=false; btnApply.disabled=true; msg("Fișier încărcat. Apasă 'Validate file'.","warn"); }
-      catch(e){ msg("Eroare la încărcare: "+(e&&e.message?e.message:e),"err"); }
-      finally{ input.value=""; }
-    });
-    btnValidate.addEventListener("click", ()=>{
-      const data=window._uploadedData; if (!data){ msg("Încarcă un fișier mai întâi.","warn"); return; }
-      const v=validateData(data); window._uploadedValid=v; showPreview(v);
-      if (v.missing_critical && v.missing_critical.length){ btnApply.disabled=true; msg("Sunt câmpuri critice lipsă. Corectează fișierul și validează din nou.","err"); }
-      else { btnApply.disabled=false; msg("Validare OK. Poți apăsa 'Apply to interface'.","ok"); }
-    });
-    btnApply.addEventListener("click", ()=>{
-      try {
-        const payload = window._uploadedData || {};
-        sessionStorage.setItem("esf_replace_payload", JSON.stringify(payload));
-        location.reload();
-      } catch(e){ msg("Eroare la Apply: "+(e&&e.message?e.message:e),"err"); }
-    });
-
-    bar.appendChild(btnChoose); bar.appendChild(btnValidate); bar.appendChild(btnApply);
-    valEl.parentNode.insertBefore(bar, valEl);
-  }
-
-  const obs=new MutationObserver(()=>{ const val=document.getElementById("valContent"); if (val) renderBar(val); });
-  obs.observe(document.documentElement||document.body,{childList:true,subtree:true});
-  if (typeof window.openValidate==="function"){ const _orig=window.openValidate; window.openValidate=function(show){ const r=_orig.apply(this,arguments); try{ const val=document.getElementById("valContent"); if (show&&val) renderBar(val);}catch(e){} return r; }; }
-})();
-</script><script defer="True" id="baked-payload-v10">
-(function(){
-  const INCOMING = {{
-  "processes": [
-    {{
-      "id": "field-management",
-      "name": "FIELD MANAGEMENT",
-      "subs": [
-        "Test"
-      ]
-    }}
-  ],
-  "tasks": [
-    {{
-      "process": "field-management",
-      "subproc": "Test",
-      "group": "FIELD MANAGEMENT",
-      "position": "Test Position",
-      "title": "Test Titlu",
-      "desc": "Test descriere",
-      "freq": "ONGOING",
-      "importance": "HIGH",
-      "owner": "Test",
-      "exec": "Test 2"
-    }}
-  ],
-  "validation": {{}}
-}};
-  function ensureProcesses(payload){
-    if (!payload.processes || !payload.processes.length){
-      const procMap={};
-      (payload.tasks||[]).forEach(t=>{ const pid=String(t.process||"").toLowerCase(); if(!pid) return; procMap[pid]=procMap[pid]||new Set(); if (t.subproc) procMap[pid].add(t.subproc); });
-      payload.processes = Object.entries(procMap).map(([id,subs])=>({id, name:id.replace(/-/g," ").toUpperCase(), subs:[...subs]}));
-    }
-  }
-  function applyIncoming(incoming){
-    ensureProcesses(incoming);
-    if (!window.PAYLOAD || typeof window.PAYLOAD!=="object") return "no-payload";
-    if (!Array.isArray(window.PAYLOAD.processes)) window.PAYLOAD.processes = [];
-    window.PAYLOAD.processes.splice(0, window.PAYLOAD.processes.length, ...(incoming.processes||[]));
-    if (!Array.isArray(window.PAYLOAD.tasks)) window.PAYLOAD.tasks = [];
-    window.PAYLOAD.tasks.splice(0, window.PAYLOAD.tasks.length, ...(incoming.tasks||[]));
-    if (!window.PAYLOAD.validation) window.PAYLOAD.validation = {};
-    var totals={tasks:(incoming.tasks||[]).length, high:0, med:0, low:0};
-    (incoming.tasks||[]).forEach(t=>{ const imp=String(t.importance||"").toUpperCase(); if(imp==="HIGH") totals.high++; else if(imp==="MEDIUM") totals.med++; else if(imp==="LOW") totals.low++; });
-    const valid=incoming.validation||{ totals };
-    Object.keys(window.PAYLOAD.validation).forEach(k=>delete window.PAYLOAD.validation[k]);
-    Object.assign(window.PAYLOAD.validation, valid);
-    if (typeof window.PROCESSES!=="undefined") window.PROCESSES = window.PAYLOAD.processes;
-    if (typeof window.TASKS!=="undefined" && Array.isArray(window.TASKS)) window.TASKS.splice(0, window.TASKS.length, ...window.PAYLOAD.tasks);
-    if (typeof window.VALID!=="undefined" && window.VALID){ Object.keys(window.VALID).forEach(k=>delete window.VALID[k]); Object.assign(window.VALID, window.PAYLOAD.validation); }
-    if (typeof window.buildTree==="function") window.buildTree();
-    if (typeof window.fillSelects==="function") window.fillSelects();
-    if (typeof window.applyFilters==="function") window.applyFilters();
-    if (typeof window.buildKPIs==="function") window.buildKPIs(window.PAYLOAD.validation.totals);
-    setTimeout(()=>{ try{ const note=document.createElement("div"); note.textContent="✅ Bază de date injectată (baked-in)."; note.style.position="fixed"; note.style.right="16px"; note.style.bottom="16px"; note.style.background="#e8f8ef"; note.style.border="1px solid #20a464"; note.style.padding="10px 14px"; note.style.borderRadius="10px"; note.style.zIndex="9999"; document.body.appendChild(note); setTimeout(()=>note.remove(),3000); }catch(e){} }, 100);
-  }
-  // Wait for app init then inject
-  let tries=0;
-  const timer=setInterval(()=>{ 
-    tries++;
-    const ready = !!(window.PAYLOAD && (typeof window.buildTree==="function" || document.getElementById("tree")));
-    if (ready || tries>100){ clearInterval(timer); try{ applyIncoming(INCOMING); }catch(e){ console.error("baked apply error:", e); } }
-  }, 100);
-})();
-</script><script defer="True" id="ui-fixes-baked-js">
-(function(){
-  function wrapToggle(fnName, panelId){
-    if (typeof window[fnName] !== "function") return;
-    const original = window[fnName];
-    window[fnName] = function(open=true){
-      const r = original.apply(this, arguments);
-      try { var p=document.getElementById(panelId); var isOpen=open; if (p) isOpen = p.style.display!=="none"; document.body.classList.toggle("modal-open", !!isOpen); } catch(e){}
-      return r;
-    };
-  }
-  wrapToggle("openHelp","help");
-  wrapToggle("openValidate","validate");
-  document.addEventListener("DOMContentLoaded", function(){
-    ["btn-help","btn-validate","btn-clear","btn-export","btn-desc"].forEach(function(id){
-      var b=document.getElementById(id); if (!b) return;
-      if (b.textContent && /<\s*$/.test(b.textContent)) b.textContent = b.textContent.replace(/<\s*$/,"").trim();
-    });
-    var desc=document.getElementById("btn-desc"); if (desc) desc.classList.add("primary");
-  });
-})();
-</script><script defer="True" id="taskmgr-js-inline">
-(function(){
-  const $ = s=>document.querySelector(s);
-  let editingId = null;
-  const LS_KEY_DATA = "esf_user_data_v1";
-  const LS_KEY_SNAP = "esf_snapshots_v1";
-
-  function showMgr(){ $("#tmgr-overlay").style.display="flex"; document.body.classList.add("modal-open"); fillProcessSelect(); refreshList(); }
-  function hideMgr(){ $("#tmgr-overlay").style.display="none"; document.body.classList.remove("modal-open"); clearForm(); }
-  function bindOpeners(){
-    // Insert button inline with CLEAR ALL (same container) 
-    const clearBtn = document.getElementById("btn-clear");
-    if (clearBtn && !document.getElementById("btn-taskmgr-inline")){
-      const b = document.createElement("button");
-      b.id = "btn-taskmgr-inline"; b.className = "btn primary"; b.textContent = "Task Manager";
-      clearBtn.parentNode.insertBefore(b, clearBtn.nextSibling);
-      b.addEventListener("click", showMgr);
-    }
-    // Keyboard shortcut
-    document.addEventListener("keydown", (e)=>{
-      if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="m"){ e.preventDefault(); showMgr(); }
-    });
-  }
-
-  function ensureIds(){
-    if (!window.TASKS) return;
-    let maxId = (TASKS.reduce((mx,x)=>Math.max(mx, x && x.__id || 0), 0));
-    TASKS.forEach(t=>{ if(!t.__id){ maxId += 1; t.__id = maxId; } });
-  }
-  function msg(text){
-    const box = $("#tmgr-msg"); if (!box) return;
-    const p = document.createElement("div");
-    const now = new Date().toLocaleString();
-    p.textContent = `[${now}] ${text}`; box.prepend(p);
-  }
-  function clearForm(){
-    editingId = null;
-    $("#tmgr-process").value = "";
-    $("#tmgr-subproc").value = "";
-    $("#tmgr-position").value = "";
-    $("#tmgr-title-in").value = "";
-    $("#tmgr-desc").value = "";
-    $("#tmgr-freq").value = "ONGOING";
-    $("#tmgr-imp").value = "HIGH";
-    $("#tmgr-owner").value = "";
-    $("#tmgr-exec").value = "";
-    $("#tmgr-update").disabled = true;
-    $("#tmgr-delete").disabled = true;
-  }
-  function fillProcessSelect(){
-    const sel = $("#tmgr-process"); if (!sel) return;
-    const opts = (window.PROCESSES||[]).map(p=>`<option value="${p.id}">${p.name||p.id}</option>`).join("");
-    sel.innerHTML = `<option value="">(new process)</option>` + opts;
-  }
-  function computeTotals(list){
-    const r={tasks:0,high:0,med:0,low:0};
-    (list||[]).forEach(t=>{
-      r.tasks++;
-      const imp = String(t.importance||"").toUpperCase();
-      if (imp==="HIGH") r.high++; else if (imp==="MEDIUM") r.med++; else if (imp==="LOW") r.low++;
-    });
-    return r;
-  }
-  function rebuildUI(){
-    try{ if (typeof buildTree==="function") buildTree(); }catch(e){}
-    try{ if (typeof fillSelects==="function") fillSelects(); }catch(e){}
-    try{ if (typeof applyFilters==="function") applyFilters(); }catch(e){}
-    try{
-      const totals = computeTotals(window.TASKS||[]);
-      if (typeof buildKPIs==="function") buildKPIs(totals);
-    }catch(e){}
-  }
-  function escapeHtml(s){ return String(s).replace(/[&<>\"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m])); }
-  function renderList(filter=""){
-    const tb = document.getElementById("tmgr-tbody"); if (!tb) return;
-    ensureIds();
-    const q = filter.trim().toLowerCase();
-    const rows = (window.TASKS||[]).filter(t=>{
-      if (!q) return true;
-      const hay = [
-        t.title||"", t.owner||"", t.exec||"", t.subproc||"",
-        (t.group||"").toString().toLowerCase(), t.process||""
-      ].join(" ").toLowerCase();
-      return hay.includes(q);
-    }).slice(0,800).map(t=>`<tr>
-      <td>${escapeHtml(t.title||"")}</td>
-      <td>${escapeHtml((t.group||"").toUpperCase()||t.process||"")}</td>
-      <td>${escapeHtml(t.subproc||"")}</td>
-      <td>${escapeHtml((t.importance||"").toUpperCase())}</td>
-      <td>${escapeHtml(t.owner||"")}</td>
-      <td>${escapeHtml(t.exec||"")}</td>
-      <td><button class="btn" data-pick="${t.__id}">Pick</button></td>
-    </tr>`).join("");
-    tb.innerHTML = rows || "<tr><td colspan='7'>Nu există task-uri încă.</td></tr>";
-  }
-  function refreshList(){ renderList($("#tmgr-search")?.value||""); }
-
-  // Autosave + snapshots
-  function snapshot(){
-    try{
-      const data = { processes: PROCESSES, tasks: TASKS, validation: (window.VALID||{}) };
-      const snap = { ts: Date.now(), data };
-      const list = JSON.parse(localStorage.getItem(LS_KEY_SNAP)||"[]");
-      list.unshift(snap);
-      while(list.length>5) list.pop();
-      localStorage.setItem(LS_KEY_SNAP, JSON.stringify(list));
-    }catch(e){}
-  }
-  function autosave(){
-    try{
-      const data = { processes: PROCESSES, tasks: TASKS, validation: (window.VALID||{}) };
-      localStorage.setItem(LS_KEY_DATA, JSON.stringify(data));
-    }catch(e){}
-  }
-  function restoreAutosave(){
-    try{
-      const raw = localStorage.getItem(LS_KEY_DATA);
-      if (!raw) { msg("Nu există autosave."); return; }
-      const payload = JSON.parse(raw);
-      if (Array.isArray(payload.tasks)){
-        TASKS.splice(0,TASKS.length, ...payload.tasks);
-        if (Array.isArray(PAYLOAD?.tasks)) PAYLOAD.tasks.splice(0,PAYLOAD.tasks.length, ...payload.tasks);
-      }
-      if (Array.isArray(payload.processes)){
-        PROCESSES.splice(0,PROCESSES.length, ...payload.processes);
-      }
-      msg("♻️ Restaurat din autosave."); rebuildUI(); refreshList();
-    }catch(e){ msg("Eroare la restore: "+e.message); }
-  }
-
-  // Read/write
-  function readForm(){
-    const proc = document.getElementById("tmgr-process").value.trim();
-    const sub  = document.getElementById("tmgr-subproc").value.trim();
-    const pos  = document.getElementById("tmgr-position").value.trim();
-    const tit  = document.getElementById("tmgr-title-in").value.trim();
-    const desc = document.getElementById("tmgr-desc").value.trim();
-    const freq = document.getElementById("tmgr-freq").value.trim().toUpperCase();
-    const imp  = document.getElementById("tmgr-imp").value.trim().toUpperCase();
-    const owner= document.getElementById("tmgr-owner").value.trim();
-    const exec = document.getElementById("tmgr-exec").value.trim();
-    const processId = proc || (tit ? tit.toLowerCase().replace(/\s+/g,'-').slice(0,24) : "process-x");
-    if (!tit){ msg("❗ Title este obligatoriu."); return null; }
-    if (!sub){ msg("❗ Sub-process este obligatoriu."); return null; }
-    return {
-      process: processId,
-      group: (proc? (PROCESSES.find(p=>p.id===proc)?.name || proc.replace(/-/g,' ').toUpperCase()) : processId.replace(/-/g,' ').toUpperCase()),
-      subproc: sub,
-      position: pos,
-      title: tit,
-      desc: desc,
-      freq: freq || "ONGOING",
-      importance: imp || "HIGH",
-      owner: owner,
-      exec: exec
-    };
-  }
-  function ensureProcessExists(task){
-    if (!task || !task.process) return;
-    const id = task.process;
-    const found = (PROCESSES||[]).find(p=>p.id===id);
-    if (!found){
-      PROCESSES.push({id, name:id.replace(/-/g,' ').toUpperCase(), subs: task.subproc? [task.subproc] : []});
-    } else if (task.subproc){
-      if (!Array.isArray(found.subs)) found.subs = [];
-      if (!found.subs.includes(task.subproc)) found.subs.push(task.subproc);
-    }
-  }
-
-  // Events
-  document.addEventListener("click", (e)=>{
-    const pickBtn = e.target.closest("button[data-pick]");
-    if (pickBtn) {
-      const id = Number(pickBtn.getAttribute("data-pick"));
-      const t = (window.TASKS||[]).find(x=>x.__id===id);
-      if (!t) return;
-      editingId = id;
-      fillProcessSelect();
-      document.getElementById("tmgr-process").value = t.process || "";
-      document.getElementById("tmgr-subproc").value = t.subproc || "";
-      document.getElementById("tmgr-position").value = t.position || "";
-      document.getElementById("tmgr-title-in").value = t.title || "";
-      document.getElementById("tmgr-desc").value = t.desc || "";
-      document.getElementById("tmgr-freq").value = (String(t.freq||"").toUpperCase()||"ONGOING");
-      document.getElementById("tmgr-imp").value = (String(t.importance||"").toUpperCase()||"HIGH");
-      document.getElementById("tmgr-owner").value = t.owner || "";
-      document.getElementById("tmgr-exec").value = t.exec || "";
-      document.getElementById("tmgr-update").disabled = false;
-      document.getElementById("tmgr-delete").disabled = false;
-      return;
-    }
-  });
-  document.addEventListener("click", (e)=>{
-    const addBtn = e.target.closest("#tmgr-add");
-    const updBtn = e.target.closest("#tmgr-update");
-    const delBtn = e.target.closest("#tmgr-delete");
-    const impBtn = e.target.closest("#tmgr-import");
-    const expBtn = e.target.closest("#tmgr-export");
-    const clsBtn = e.target.closest("#tmgr-close");
-    const xBtn   = e.target.closest("#tmgr-x");
-    const clrBtn = e.target.closest("#tmgr-clear");
-    const rstBtn = e.target.closest("#tmgr-restore");
-    if (addBtn){
-      const t = readForm(); if (!t) return;
-      ensureIds();
-      t.__id = (TASKS.reduce((mx,x)=>Math.max(mx, x.__id||0), 0) + 1);
-      TASKS.push(t); if (Array.isArray(PAYLOAD?.tasks)) PAYLOAD.tasks.push(t);
-      ensureProcessExists(t);
-      msg("✅ Task adăugat."); snapshot(); autosave(); refreshList(); rebuildUI(); return;
-    }
-    if (updBtn){
-      if (!editingId) return;
-      const upd = readForm(); if (!upd) return;
-      const idx = TASKS.findIndex(x=>x.__id===editingId);
-      if (idx>-1){
-        const keepId = TASKS[idx].__id;
-        TASKS[idx] = Object.assign({}, TASKS[idx], upd, {__id: keepId});
-      }
-      if (Array.isArray(PAYLOAD?.tasks)){
-        const j = PAYLOAD.tasks.findIndex(x=>x.__id===editingId);
-        if (j>-1){ PAYLOAD.tasks[j] = TASKS[idx]; }
-      }
-      ensureProcessExists(upd);
-      msg("✅ Modificare salvată."); snapshot(); autosave(); refreshList(); rebuildUI(); return;
-    }
-    if (delBtn){
-      if (!editingId) return;
-      if (!confirm("Ștergi acest task?")) return;
-      const idx = TASKS.findIndex(x=>x.__id===editingId);
-      if (idx>-1){ TASKS.splice(idx,1); }
-      if (Array.isArray(PAYLOAD?.tasks)){
-        const j = PAYLOAD.tasks.findIndex(x=>x.__id===editingId);
-        if (j>-1){ PAYLOAD.tasks.splice(j,1); }
-      }
-      msg("🗑️ Task șters."); snapshot(); autosave(); clearForm(); refreshList(); rebuildUI(); return;
-    }
-    if (impBtn){ document.getElementById("tmgr-file").click(); return; }
-    if (expBtn){
-      const data = { processes: PROCESSES, tasks: TASKS, validation: (window.VALID||{}) };
-      const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a"); a.href = url; a.download = "ESF_Task_Tree_updated.json";
-      document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 800);
-      return;
-    }
-    if (clsBtn || xBtn){ hideMgr(); return; }
-    if (clrBtn){ clearForm(); msg("Form cleared."); return; }
-    if (rstBtn){ restoreAutosave(); return; }
-  });
-  document.addEventListener("input", (e)=>{ if (e.target && e.target.id==="tmgr-search"){ renderList(e.target.value||""); } });
-  document.addEventListener("change", async (e)=>{
-    if (e.target && e.target.id==="tmgr-file"){
-      const file = e.target.files && e.target.files[0]; if (!file) return;
-      try{
-        const text = await file.text();
-        const lower = file.name.toLowerCase();
-        let incoming;
-        if (lower.endsWith(".json")) incoming = JSON.parse(text);
-        else if (lower.endsWith(".csv")) incoming = csvToPayload(text);
-        else throw new Error("Folosește .json sau .csv (Excel → Save as CSV).");
-        normalizeIncoming(incoming);
-        if (document.getElementById("tmgr-replace").checked){
-          TASKS.splice(0, TASKS.length, ...(incoming.tasks||[]));
-          if (Array.isArray(PAYLOAD?.tasks)) PAYLOAD.tasks.splice(0, PAYLOAD.tasks.length, ...(incoming.tasks||[]));
-          PROCESSES.splice(0, PROCESSES.length, ...(incoming.processes||[]));
-        } else {
-          (incoming.tasks||[]).forEach(t=>{ t.__id = (TASKS.reduce((mx,x)=>Math.max(mx, x.__id||0), 0) + 1); TASKS.push(t); if (Array.isArray(PAYLOAD?.tasks)) PAYLOAD.tasks.push(t); ensureProcessExists(t); });
-        }
-        msg("✅ Import reușit."); snapshot(); autosave(); refreshList(); rebuildUI();
-      }catch(err){ msg("Eroare la import: " + (err && err.message ? err.message : err)); }
-      finally{ e.target.value=""; }
-    }
-  });
-
-  function csvToPayload(text){
-    const rows = text.split(/\r?\n/).filter(Boolean);
-    if (rows.length<2) throw new Error("CSV must have header + rows.");
-    const header = rows[0].split(",").map(s=>s.trim().toUpperCase());
-    const tasks = rows.slice(1).map(line=>{
-      const vals=line.split(",").map(s=>s.trim()); const o={};
-      header.forEach((h,i)=>{
-        const v=(vals[i]||"").trim();
-        if (h==="PROCESS") o.process=v.toLowerCase().replace(/\s+/g,"-");
-        if (h==="SUB-PROCESS") o.subproc=v;
-        if (h==="POSITION") o.position=v;
-        if (h==="KEY ACTIVITY" || h==="TASK" || h==="TITLE") o.title=v;
-        if (h==="DESCRIPTION" || h==="DESC") o.desc=v;
-        if (h==="FREQUENCY" || h==="FREQ") o.freq=v.toUpperCase();
-        if (h==="IMPORTANCE" || h==="IMP") o.importance=v.toUpperCase();
-        if (h==="OWNER") o.owner=v;
-        if (h==="EXECUTOR" || h==="EXEC") o.exec=v;
-      });
-      o.group=(o.process||"").replace(/-/g," ").toUpperCase();
-      return o;
-    });
-    const procMap={};
-    tasks.forEach(t=>{ if(!t.process) return; procMap[t.process]=procMap[t.process]||new Set(); if (t.subproc) procMap[t.process].add(t.subproc); });
-    const processes = Object.entries(procMap).map(([id,subs])=>({id, name:id.replace(/-/g," ").toUpperCase(), subs:[...subs]}));
-    return { processes, tasks };
-  }
-  function normalizeIncoming(incoming){
-    (incoming.tasks||[]).forEach(t=>{
-      t.freq = String(t.freq||"").toUpperCase();
-      t.importance = String(t.importance||"").toUpperCase();
-      t.process = String(t.process||"").toLowerCase();
-      t.group = t.group || t.process.replace(/-/g," ").toUpperCase();
-    });
-    if (!incoming.processes || !incoming.processes.length){
-      const procMap={};
-      (incoming.tasks||[]).forEach(t=>{ const pid=t.process; if(!pid) return; procMap[pid]=procMap[pid]||new Set(); if (t.subproc) procMap[pid].add(t.subproc); });
-      incoming.processes = Object.entries(procMap).map(([id,subs])=>({id, name:id.replace(/-/g," ").toUpperCase(), subs:[...subs]}));
-    }
-  }
-
-  // Mount inline button after DOM is ready
-  document.addEventListener("DOMContentLoaded", bindOpeners);
-})();
-</script><script defer="True" id="tmgr-bind-fixes">
-(function(){
-  function $(s){return document.querySelector(s);}
-  function openMgr(){
-    var ov = $("#tmgr-overlay"); if (!ov) return;
-    ov.style.display = "flex";
-    document.body.classList.add("modal-open");
-  }
-  function closeMgr(){
-    var ov = $("#tmgr-overlay"); if (!ov) return;
-    ov.style.display = "none";
-    document.body.classList.remove("modal-open");
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    var b = document.getElementById("btn-taskmgr");
-    if (b) b.addEventListener("click", openMgr);
-    var x = document.getElementById("tmgr-x");
-    if (x) x.addEventListener("click", closeMgr);
-    var c = document.getElementById("tmgr-close");
-    if (c) c.addEventListener("click", closeMgr);
-  });
-  document.addEventListener("click", function(e){
-    if (e.target && e.target.id === "tmgr-overlay") { closeMgr(); }
-  });
-  document.addEventListener("keydown", function(e){
-    if ((e.key === "Escape")) closeMgr();
-    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="m") { e.preventDefault(); openMgr(); }
-  });
-})();
-</script><script defer="True" id="tmgr-rebuild-helper">
-(function(){
-  window.__rebuildUI = function(){
-    try{ if (typeof buildTree==="function") buildTree(); }catch(e){}
-    try{ if (typeof fillSelects==="function") fillSelects(); }catch(e){}
-    try{ if (typeof applyFilters==="function") applyFilters(); }catch(e){}
-    try{
-      if (typeof buildKPIs==="function"){
-        var list = (window.TASKS||[]);
-        var totals={tasks:0,high:0,med:0,low:0};
-        list.forEach(function(t){
-          totals.tasks++;
-          var imp = String(t.importance||"").toUpperCase();
-          if (imp==="HIGH") totals.high++; else if (imp==="MEDIUM") totals.med++; else if (imp==="LOW") totals.low++;
-        });
-        buildKPIs(totals);
-      }
-    }catch(e){}
-  };
-})();
-</script><script defer="True">
-document.addEventListener("DOMContentLoaded", function(){
-  var btnSkills = document.getElementById("btn-skills");
-  var posModal = document.getElementById("skills-positions");
-  var posClose = document.getElementById("skills-positions-close");
-
-  var skillsModal = document.getElementById("skills-modal");
-  var skillsTitle = document.getElementById("skills-modal-title");
-  var skillsList = document.getElementById("skills-list");
-  var skillsClose = document.getElementById("skills-modal-close");
-
-  var skillsData = {
-    "stock-controller": [
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M3 4h18v2H3zm0 14h18v2H3zM3 9h12v2H3zm0 5h12v2H3z"/></svg>', text: "Planificare și optimizare fluxuri" },
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"/><path d="M10 17l-3-5 3-5h2l-3 5 3 5h-2z"/></svg>', text: "Excel avansat & analiză date" },
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v12H4zm2 4v4h12v-4z"/></svg>', text: "Interpretare și prezentare rezultate" },
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M3 5h18v14H3z" fill="none"/><path d="M9 9h6v6H9z"/></svg>', text: "Competențe digitale solide" }
-    ],
-    "account-manager": [
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M3 4h18v2H3zm0 14h18v2H3zM3 9h12v2H3zm0 5h12v2H3z"/></svg>', text: "Planificare și coordonare" },
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M4 4h16v12H5.17L4 17.17V4z"/></svg>', text: "Comunicare și ascultare activă" },
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2z"/></svg>', text: "Gândire strategică și negociere" },
-      { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F47C26" viewBox="0 0 24 24"><path d="M3 17h18v2H3zM3 5h2v10H3zM19 5h2v10h-2zM11 9h2v6h-2z"/></svg>', text: "Analiză și interpretarea datelor" }
-    ]
-  };
-
-  function openPositions(){
-    posModal.style.display = "flex";
-    document.body.classList.add("modal-open");
-  }
-  function closePositions(){
-    posModal.style.display = "none";
-    document.body.classList.remove("modal-open");
-  }
-
-  function openSkills(label, key){
-    var list = skillsData[key] || [];
-    skillsTitle.textContent = label + " - Skills";
-    skillsList.innerHTML = "";
-    list.forEach(function(item){
-      var li = document.createElement("li");
-      li.style.display = "flex";
-      li.style.alignItems = "center";
-      li.style.gap = "8px";
-      li.innerHTML = item.icon + '<span>' + item.text + '</span>';
-      skillsList.appendChild(li);
-    });
-    // open modal
-    skillsModal.style.display = "flex";
-    document.body.classList.add("modal-open");
-  }
-
-  // Open positions modal on button click
-  btnSkills?.addEventListener("click", function(e){
-    e.preventDefault();
-    openPositions();
-  });
-
-  // Close positions modal
-  posClose?.addEventListener("click", closePositions);
-  posModal?.addEventListener("click", function(e){ if(e.target === posModal) closePositions(); });
-
-  // Delegate clicks on positions
-  document.addEventListener("click", function(e){
-    var item = e.target.closest(".pos-item");
-    if(item && posModal && posModal.style.display === "flex"){
-      var key = item.getAttribute("data-pos");
-      var label = item.getAttribute("data-label") || item.textContent.trim();
-      closePositions();
-      openSkills(label, key);
-    }
-  });
-
-  // Close skills modal
-  skillsClose?.addEventListener("click", function(){
-    skillsModal.style.display = "none";
-    document.body.classList.remove("modal-open");
-  });
-  skillsModal?.addEventListener("click", function(e){
-    if(e.target === skillsModal){
-      skillsModal.style.display = "none";
-      document.body.classList.remove("modal-open");
-    }
-  });
-  document.addEventListener("keydown", function(e){
-    if(e.key === "Escape"){
-      if(posModal && posModal.style.display === "flex"){ closePositions(); }
-      else if(skillsModal && skillsModal.style.display === "flex"){
-        skillsModal.style.display = "none";
-        document.body.classList.remove("modal-open");
-      }
-    }
-  });
-});
-</script><script defer="True" id="safe-overrides-step15">
-(function(){
-  function getFocusable(container){
-    if(!container) return [];
-    return Array.prototype.slice.call(
-      container.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])')
-    ).filter(function(el){ return !el.hasAttribute('disabled') && el.offsetParent !== null; });
-  }
-  function trap(modalEl){
-    var panel = modalEl.querySelector('.panel') || modalEl;
-    var previouslyFocused = null;
-    function onOpen(){
-      previouslyFocused = document.activeElement;
-      var focusables = getFocusable(panel);
-      if(focusables.length){
-        focusables[0].focus();
-      }else{
-        panel.setAttribute('tabindex','-1');
-        panel.focus();
-      }
-      document.addEventListener('keydown', onKeyDown, true);
-    }
-    function onClose(){
-      document.removeEventListener('keydown', onKeyDown, true);
-      if(previouslyFocused && document.body.contains(previouslyFocused)){
-        previouslyFocused.focus();
-      }
-    }
-    function onKeyDown(e){
-      if(e.key !== 'Tab') return;
-      var focusables = getFocusable(panel);
-      if(!focusables.length) return;
-      var first = focusables[0];
-      var last = focusables[focusables.length - 1];
-      if(e.shiftKey && document.activeElement === first){
-        e.preventDefault(); last.focus();
-      } else if(!e.shiftKey && document.activeElement === last){
-        e.preventDefault(); first.focus();
-      }
-    }
-    // Observe display changes to auto-enable trap
-    var obs = new MutationObserver(function(){
-      var visible = window.getComputedStyle(modalEl).display !== 'none';
-      if(visible){ onOpen(); } else { onClose(); }
-    });
-    obs.observe(modalEl, { attributes:true, attributeFilter:['style','class'] });
-    // In case it's initially visible:
-    if(window.getComputedStyle(modalEl).display !== 'none'){ onOpen(); }
-  }
-
-  function init(){
-    var skillsModal = document.getElementById('skills-modal');
-    var posModal = document.getElementById('skills-positions');
-    if(skillsModal) trap(skillsModal);
-    if(posModal) trap(posModal);
-  }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
-  } else { init(); }
-})();
-</script><script defer="True" id="cleanup-tasks-pill">
-document.addEventListener('DOMContentLoaded', function(){
-  var reExactTasks = /^\s*\d+\s*TASKS?\s*$/i;
-
-  function shouldRemove(el){
-    var txt = (el.textContent || "").trim();
-    if(!reExactTasks.test(txt)) return false;
-    // exclude any table/list areas (we only want the header pill under ESF)
-    if(el.closest('table, .table, .tasks-table, .list, .grid, .datatable')) return false;
-    // exclude section counters that include extra words (e.g., "TASKS SHOWN")
-    if(/SHOWN/i.test(txt)) return false;
-    return true;
-  }
-
-  // scan a few element types
-  var nodes = document.querySelectorAll('button, a, span, div');
-  nodes.forEach(function(n){
-    if(shouldRemove(n)) n.remove();
-  });
-
-  // Also observe later dynamic injections
-  var obs = new MutationObserver(function(muts){
-    muts.forEach(function(m){
-      (m.addedNodes || []).forEach(function(node){
-        if(!(node instanceof HTMLElement)) return;
-        if(shouldRemove(node)) node.remove();
-        node.querySelectorAll && node.querySelectorAll('button, a, span, div').forEach(function(n){
-          if(shouldRemove(n)) n.remove();
-        });
-      });
-    });
-  });
-  obs.observe(document.body, {childList:true, subtree:true});
-});
-</script><script defer="True" id="desc-normalize-next">
-(function(){
-  function findDescriptionColumnIndexes(table){
-    var headers = table.querySelectorAll('thead th');
-    var idxs = [];
-    headers.forEach(function(th, i){
-      var t = (th.textContent || "").trim().toLowerCase();
-      if(!t) return;
-      if(t === "description" || t.indexOf("description") >= 0 || t === "descriere" || t.indexOf("descriere") >= 0){
-        idxs.push(i);
-      }
-    });
-    return idxs;
-  }
-  function addDescClass(table){
-    var idxs = findDescriptionColumnIndexes(table);
-    if(!idxs.length) return;
-    var rows = table.querySelectorAll('tbody tr');
-    rows.forEach(function(tr){
-      idxs.forEach(function(i){
-        var td = tr.children[i];
-        if(td) td.classList.add('desc');
-      });
-    });
-  }
-  function isPlainTextWithBreaks(el){
-    for(var i=0;i<el.childNodes.length;i++){
-      var n = el.childNodes[i];
-      if(n.nodeType === 3) continue;
-      if(n.nodeType === 1 && n.tagName === 'BR') continue;
-      return false;
-    }
-    return true;
-  }
-  function normalizeCell(td){
-    if(td.getAttribute('data-cleaned') === '1') return;
-    var html = td.innerHTML;
-    if(!html || html.trim() === ""){ td.setAttribute('data-cleaned','1'); return; }
-    if(td.querySelector('ul, ol, p, table, pre, code, blockquote')){ td.setAttribute('data-cleaned','1'); return; }
-    if(!isPlainTextWithBreaks(td)){ td.setAttribute('data-cleaned','1'); return; }
-
-    var tmp = td.innerHTML.replace(/<br\s*\/?>/gi, "\n");
-    var lines = tmp.split(/\n+/).map(function(s){ return s.replace(/\u00A0/g, ' ').trim(); }).filter(Boolean);
-    if(!lines.length){ td.setAttribute('data-cleaned','1'); return; }
-
-    var bulletRE = /^\s*[-*•]\s+/;
-    var hasBullets = lines.some(function(l){ return bulletRE.test(l); });
-    var out = document.createElement(hasBullets ? 'ul' : 'div');
-    if(hasBullets){
-      lines.forEach(function(l){
-        var text = l.replace(bulletRE, '');
-        var li = document.createElement('li');
-        li.textContent = text;
-        out.appendChild(li);
-      });
-    } else {
-      lines.forEach(function(l){
-        var p = document.createElement('p');
-        p.textContent = l;
-        out.appendChild(p);
-      });
-    }
-    td.innerHTML = "";
-    td.appendChild(out);
-    td.setAttribute('data-cleaned','1');
-  }
-  function linkifyTextNode(node){
-    if(node.nodeType !== 3) return;
-    var t = node.nodeValue;
-    if(!t || !t.trim()) return;
-    if(node.parentNode && node.parentNode.closest('a')) return;
-
-    var frag = document.createDocumentFragment();
-    var reURL = /\bhttps?:\/\/[^\s<>"']+/gi;
-    var reEmail = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g;
-    var s = t, m, i = 0;
-
-    function appendText(text){ frag.appendChild(document.createTextNode(text)); }
-
-    while((m = reURL.exec(s))){
-      if(m.index > i) appendText(s.slice(i, m.index));
-      var a = document.createElement('a'); a.href = m[0]; a.textContent = m[0]; a.target = "_blank"; a.rel = "noopener";
-      frag.appendChild(a); i = m.index + m[0].length;
-    }
-    var rest = s.slice(i);
-    var last = 0; var m2;
-    while((m2 = reEmail.exec(rest))){
-      if(m2.index > last) appendText(rest.slice(last, m2.index));
-      var a2 = document.createElement('a'); a2.href = "mailto:"+m2[0]; a2.textContent = m2[0];
-      frag.appendChild(a2); last = m2.index + m2[0].length;
-    }
-    if(last < rest.length) appendText(rest.slice(last));
-
-    if(frag.childNodes.length){
-      node.parentNode.replaceChild(frag, node);
-    }
-  }
-  function enhanceKeyLines(container){
-    container.querySelectorAll('p').forEach(function(p){
-      if(p.classList.contains('keyline')) return;
-      var txt = (p.textContent || "").trim();
-      var m = txt.match(/^\s*([A-Za-zȘșȚțĂăÂâÎî0-9 _\-/]+?)\s*:\s*(.+)$/);
-      if(!m) return;
-      p.classList.add('keyline');
-      p.textContent = "";
-      var strong = document.createElement('strong');
-      strong.textContent = m[1] + ":";
-      p.appendChild(strong);
-      p.appendChild(document.createTextNode(" " + m[2]));
-    });
-  }
-  function renderCheckboxes(ul){
-    ul.querySelectorAll('li').forEach(function(li){
-      var t = (li.textContent || "").trim();
-      var checked = /^\[(?:x|X)\]\s+/.test(t);
-      var unchecked = /^\[\s?\]\s+/.test(t);
-      if(checked || unchecked){
-        li.textContent = t.replace(/^\[(?:x|X)?\]\s+/, '');
-        var box = document.createElement('span');
-        box.className = "chk" + (checked ? " on" : "");
-        li.insertBefore(box, li.firstChild);
-      }
-    });
-  }
-  function buildList(lines){
-    var reNumList = /^\s*(\d+)[\.\)]\s+/;
-    var reDashBullet = /^\s*[–-]\s+/;
-    var reDotBullet = /^\s*[•]\s+/;
-    var ordered = lines.every(function(l){ return reNumList.test(l); });
-    var ulBullets = lines.filter(function(l){ return reDashBullet.test(l) || reDotBullet.test(l); }).length;
-    if(ordered){
-      var ol = document.createElement('ol');
-      lines.forEach(function(l){
-        var text = l.replace(reNumList, '');
-        var li = document.createElement('li');
-        li.textContent = text.trim();
-        ol.appendChild(li);
-      });
-      return ol;
-    } else if(ulBullets > 0){
-      var ul = document.createElement('ul');
-      lines.forEach(function(l){
-        var text = l.replace(reDashBullet, '').replace(reDotBullet, '');
-        var li = document.createElement('li');
-        li.textContent = text.trim();
-        ul.appendChild(li);
-      });
-      renderCheckboxes(ul);
-      return ul;
-    } else {
-      var div = document.createElement('div');
-      lines.forEach(function(l){
-        var p = document.createElement('p');
-        p.textContent = l.trim();
-        div.appendChild(p);
-      });
-      return div;
-    }
-  }
-  function wrapAndToggle(td){
-    if(td.querySelector('.desc-box')) return;
-    var box = document.createElement('div'); box.className = 'desc-box';
-    while(td.firstChild){ box.appendChild(td.firstChild); }
-    td.appendChild(box);
-    box.classList.add('collapsed');
-    requestAnimationFrame(function(){
-      var needs = box.scrollHeight > box.clientHeight + 4;
-      if(!needs){ box.classList.remove('collapsed'); return; }
-      var btn = document.createElement('button');
-      btn.className = 'desc-toggle'; btn.type = 'button';
-      btn.setAttribute('aria-expanded','false'); btn.textContent = 'Show more';
-      btn.addEventListener('click', function(){
-        var ex = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', ex ? 'false' : 'true');
-        btn.textContent = ex ? 'Show more' : 'Show less';
-        box.classList.toggle('collapsed', ex);
-      });
-      td.appendChild(btn);
-    });
-  }
-  function run(){
-    document.querySelectorAll('table').forEach(function(tbl){
-      addDescClass(tbl);
-    });
-    document.querySelectorAll('table tbody td.desc').forEach(function(td){
-      // linkify
-      var walker = document.createTreeWalker(td, NodeFilter.SHOW_TEXT, null, false);
-      var nodes = []; while(walker.nextNode()) nodes.push(walker.currentNode);
-      nodes.forEach(linkifyTextNode);
-      // normalize simple <br> content -> paras or lists
-      normalizeCell(td);
-      // key:value emphasis
-      enhanceKeyLines(td);
-      // wrap + toggle
-      wrapAndToggle(td);
-    });
-  }
-  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', run); } else { run(); }
-})();
-</script></body>
-</html>
